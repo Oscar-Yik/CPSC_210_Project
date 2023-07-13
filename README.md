@@ -31,3 +31,7 @@ may vary as time is limited.
 - As a user, I want my character to move smoothly across the screen 
 - As a user, I want to feel relaxed and entertained when playing the game
 - As a user, I don't want to feel bored while playing the game
+- As a user, I want to move my character with the arrow keys 
+- As a user, I want to view the level of my character when I play the game
+- As a user, I want to be able to see my abilities when playing
+- As a user, I want to be able to select which enemy my character is targeting 
