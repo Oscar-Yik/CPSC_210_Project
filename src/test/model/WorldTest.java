@@ -32,4 +32,19 @@ public class WorldTest {
         assertEquals(3, testWorld.getMonsters().size());
     }
 
+    @Test
+    void testResetMonsters() {
+        testWorld.resetMonsters();
+        assertEquals(0, testWorld.getMonsters().size());
+
+        testWorld.addMonsters();
+        testWorld.resetMonsters();
+        assertEquals(0, testWorld.getMonsters().size());
+
+        testWorld.addMonsters();
+        testWorld.addMonsters();
+        testWorld.resetMonsters();
+        assertEquals(0, testWorld.getMonsters().size());
+    }
+
 }

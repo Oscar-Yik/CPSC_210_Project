@@ -2,6 +2,7 @@ package ui;
 
 import model.Enemy;
 import model.Player;
+import model.World;
 
 import java.util.Scanner;
 
@@ -9,6 +10,7 @@ import java.util.Scanner;
 // Game application
 public class GameApp {
 
+    private World world;
     private Player player;
     private Enemy monster1;
     private Enemy monster2;
@@ -43,14 +45,16 @@ public class GameApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: initializes player and enemies
+    // EFFECTS: initializes world and adds 2 enemies to it
     private void init() {
 
-        player = new Player("Hero");
-        monster1 = new Enemy();
-        monster2 = new Enemy();
+        world = new World("Hero");
+        world.addMonsters();
+        world.addMonsters();
+
         input = new Scanner(System.in);
         input.useDelimiter("\n");
+
     }
 
     // EFFECTS: displays start menu for users
@@ -107,68 +111,110 @@ public class GameApp {
      * all monsters have 0 health, asks the user to play again or quit the game
      */
     private boolean attackEnemies() {
-        String monsterChoice;
         boolean reset;
-        targetMonster();
-        monsterChoice = input.next();
-        monsterChoice = monsterChoice.toLowerCase();
+        displayMonsters();
 
-        battle(monsterChoice);
+        battle(targetMonsters());
 
-        if (monster2.getHealth() == 0 && monster1.getHealth() == 0) {
+        if (noMoreMonsters()) {
             reset = playAgain();
             if (reset) {
                 return true;
             }
+            increaseDifficulty();
         }
         return false;
     }
 
     /*
-     * EFFECTS: Displays monsters to target and their stats depending
-     * on how many of them have health greater than 0
+     * MODIFIES: this
+     * EFFECTS: user targets which monster to attack
      */
-    private void targetMonster() {
-        if (monster2.getHealth() == 0) {
-            System.out.println("\nWhich monster do you want to attack?:");
-            System.out.println("\ta -> Attack Monster 1");
-            System.out.println("\t\t" + monster1);
-        } else if (monster1.getHealth() == 0) {
-            System.out.println("\nWhich monster do you want to attack?:");
-            System.out.println("\tb -> Attack Monster 2");
-            System.out.println("\t\t" + monster2);
-        } else {
-            System.out.println("\nWhich monster do you want to attack?:");
-            System.out.println("\ta -> Attack Monster 1");
-            System.out.println("\t\t" + monster1);
-            System.out.println("\tb -> Attack Monster 2");
-            System.out.println("\t\t" + monster2);
+    private int targetMonsters() {
+        int count = 1;
+        boolean choosing = true;
+        String action;
+        while (choosing) {
+            System.out.println("\nCurrent Target: " + count);
+            System.out.println("\tt -> Target this monster");
+            System.out.println("\tn -> Next monster");
+
+            action = input.next();
+            action = action.toLowerCase();
+
+            if (action.equals("t")) {
+                choosing = false;
+
+            } else if (count + 1 > world.getMonsters().size()) {
+                count = 1;
+            } else if (action.equals("n")) {
+                count++;
+            }
+        }
+        return (count - 1);
+    }
+
+
+    /*
+     * MODIFIES: world
+     * EFFECTS: Allows user to add as many monsters as wanted with
+     * their level scaled to the player's level
+     */
+    private void increaseDifficulty() {
+        System.out.println("How many more monsters do you want to add?");
+        int numMonsters = input.nextInt();
+        for (int i = 0; i < (numMonsters + 2); i++) {
+            world.addMonsters();
+        }
+        for (Enemy enemy: world.getMonsters()) {
+            enemy.characterScale(world.getPlayer());
         }
     }
 
     /*
-     * REQUIRES: monsterChoice is either "a" or "b"
-     * MODIFIES: this
-     * EFFECTS: Removes monster's health and add player's exp
-     * depending on which monster is chosen. Also displays messages for
-     * each action
+     * EFFECTS: returns true if all monsters have no more health,
+     * false otherwise
      */
-    private void battle(String monsterChoice) {
-        if (monsterChoice.equals("a")) {
-            monster1.takeDamage(player.getStrength());
-            if (monster1.getHealth() == 0) {
-                player.addEXP();
-                System.out.println("You Leveled Up!");
+    private boolean noMoreMonsters() {
+        for (Enemy enemy: world.getMonsters()) {
+            if (enemy.getHealth() != 0) {
+                return false;
             }
-            System.out.println("Monster 1 Took " + player.getDamage() + " Damage!");
-        } else if (monsterChoice.equals("b")) {
-            monster2.takeDamage(player.getStrength());
-            if (monster2.getHealth() == 0) {
-                player.addEXP();
-                System.out.println("You Leveled Up!");
-            }
-            System.out.println("Monster 1 Took " + player.getDamage() + " Damage!");
         }
+        return true;
+    }
+
+    /*
+     * EFFECTS: Displays monsters and their stats
+     */
+    private void displayMonsters() {
+        System.out.println("\nWhich monster do you want to attack?:");
+        int count = 1;
+        for (Enemy enemy: world.getMonsters()) {
+            if (enemy.getHealth() != 0) {
+                System.out.println("\tMonster" + count);
+                System.out.println("\t\t" + enemy);
+            }
+            count++;
+        }
+    }
+
+    /*
+     * MODIFIES: this, world
+     * EFFECTS: Removes monster's health and add player's exp
+     * depending on which monster is chosen. If monster's health is zero
+     * it is removed from the world. Also displays messages for each action
+     */
+    private void battle(int monsterIndex) {
+        Enemy targetMonster = world.getMonsters().get(monsterIndex);
+        Player player = world.getPlayer();
+        targetMonster.takeDamage(player.getStrength());
+        if (targetMonster.getHealth() == 0) {
+            world.getMonsters().remove(monsterIndex);
+            player.addEXP();
+            System.out.println("You Leveled Up!");
+        }
+        System.out.println("Monster " + (monsterIndex + 1) + " Took " + player.getDamage() + " Damage!");
     }
 
     /*
@@ -193,10 +239,7 @@ public class GameApp {
             reset = true;
         }
 
-        monster1 = new Enemy();
-        monster2 = new Enemy();
-        monster1.characterScale(player);
-        monster2.characterScale(player);
+        world.resetMonsters();
         return reset;
     }
 
@@ -204,6 +247,7 @@ public class GameApp {
      * EFFECTS: Displays player's stats
      */
     private void stats() {
+        Player player = world.getPlayer();
         System.out.println("Level: " + player.getLevel().size());
         System.out.println("Strength: " + player.getStrength());
         System.out.println("Health: " + player.getHealth());

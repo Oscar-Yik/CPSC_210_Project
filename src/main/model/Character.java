@@ -51,7 +51,7 @@ public class Character {
     /*
      * MODIFIES: this
      * EFFECTS: Character loses health equal to the strength times its
-     * damageMultiplier only up to 0
+     * damageMultiplier only up to
      */
     public void takeDamage(int strength) {
         if (this.health > 0) {

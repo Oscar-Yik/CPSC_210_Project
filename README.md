@@ -19,20 +19,19 @@ In addition to these features, each replay will allow the character to change or
 equipment to prepare them for the next leg of the journey. This data will be stored as a save state
 and allow the user to continue their adventure when they want to play again. After the user completes
 the game, they will be able to continually replay the game with the enemies increasing in quantity and 
-difficulty infinitely so that the character can level up infinitely (adding arbitrary number of "**X**" levels 
-to the playable character "**Y**"). Increasing the character's level will correspond to increasing the 
-character's attributes and abilities in various ways. The exact implementation and detail of these features
-may vary as time is limited. 
+difficulty infinitely (adding arbitrary number of "**X**" enemies to the world "**Y**"). 
+Increasing the character's level will correspond to increasing the character's attributes and abilities 
+in various ways. The exact implementation and detail of these features may vary as time is limited. 
 
 ## User Stories
-- As a user, I want to be able to replay the game to infinitely add levels (**X**) to my character (**Y**)
-- As a user, I want to save my game and load the game to continue right where I left off previously
+- As a user, I want to be able to replay the game by adding an arbitrary number of enemies (**X**) to my world (**Y**)
+- As a user, I want to be able to save my world state (player, enemies, world attributes)
+- As a user, I want to be able to load the game to continue right where I left off previously
 - As a user, I want to explore an infinitely expanding world
 - As a user, I want my character to move smoothly across the screen 
 - As a user, I want to feel relaxed and entertained when playing the game
 - As a user, I don't want to feel bored while playing the game
-- **As a user, I want to move my character with the arrow keys** 
-- **As a user, I want to view the level of my character when I play the game**
+- As a user, I want to move my character with the arrow keys 
+- As a user, I want to view the level of my character when I play the game
 - As a user, I want to be able to see my abilities when playing
-- **As a user, I want to be able to select which enemy my character is targeting**
-- **First user Story**
+- As a user, I want to be able to select which enemy my character is targeting

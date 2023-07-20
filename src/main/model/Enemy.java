@@ -8,7 +8,7 @@ public class Enemy extends Character {
      */
     public Enemy() {
         super();
-        damageMultiplier = 1;
+        damageMultiplier = 2;
         levelUp();
         levelUp();
     }

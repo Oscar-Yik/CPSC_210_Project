@@ -42,4 +42,11 @@ public class World {
         monsters.add(new Enemy());
     }
 
+    /*
+     * EFFECTS: removes all monsters from list of monsters
+     */
+    public void resetMonsters() {
+        monsters = new ArrayList<Enemy>();
+    }
+
 }

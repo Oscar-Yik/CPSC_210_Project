@@ -1,13 +1,11 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 // Represents an account having an id, owner name and balance (in dollars)
 public class Player extends Character {
 
-    private static final int expThreshold = 200;
+    private static final int expThreshold = 100;
     private String name;
     private String weapon;
     private int movementSpeed;
