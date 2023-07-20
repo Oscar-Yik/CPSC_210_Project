@@ -211,8 +211,11 @@ public class GameApp {
         targetMonster.takeDamage(player.getStrength());
         if (targetMonster.getHealth() == 0) {
             world.getMonsters().remove(monsterIndex);
+            int iniLevel = player.getLevel().size();
             player.addEXP();
-            System.out.println("You Leveled Up!");
+            if (player.getLevel().size() > iniLevel) {
+                System.out.println("You Leveled Up!");
+            }
         }
         System.out.println("Monster " + (monsterIndex + 1) + " Took " + player.getDamage() + " Damage!");
     }

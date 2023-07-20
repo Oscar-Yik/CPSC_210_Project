@@ -19,7 +19,7 @@ public class EnemyTest {
 
     @Test
     void testConstructor() {
-        assertEquals(1, testEnemy.getDamageMultiplier());
+        assertEquals(2, testEnemy.getDamageMultiplier());
         assertEquals(2,testEnemy.getLevel().size());
     }
 
