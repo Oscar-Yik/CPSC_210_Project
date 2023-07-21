@@ -1,5 +1,8 @@
 package model;
 
+/*
+ * Represents an enemy that the player can defeat in the game
+ */
 public class Enemy extends Character {
 
     /*

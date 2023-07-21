@@ -3,6 +3,9 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * Represents the game world where the player and enemies live/exist
+ */
 public class World {
     private List<Enemy> monsters;
     private Player player;

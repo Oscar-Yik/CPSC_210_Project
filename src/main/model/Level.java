@@ -2,6 +2,9 @@ package model;
 
 import java.util.Random;
 
+/*
+ * Represents the levels of the characters in the game
+ */
 public class Level {
 
     private int strengthPoints;

@@ -3,6 +3,9 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * Represents the characters in the game such as players and enemies
+ */
 public class Character {
 
     protected int strength;

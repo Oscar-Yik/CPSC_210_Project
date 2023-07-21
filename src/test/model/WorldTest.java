@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/*
+ * Tests the World class
+ */
 public class WorldTest {
 
     private World testWorld;

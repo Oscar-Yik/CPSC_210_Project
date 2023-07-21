@@ -2,7 +2,9 @@ package model;
 
 import java.util.Random;
 
-// Represents an account having an id, owner name and balance (in dollars)
+/*
+ * Represents the player character that the user controls
+ */
 public class Player extends Character {
 
     private static final int expThreshold = 200;
