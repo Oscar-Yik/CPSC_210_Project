@@ -8,6 +8,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.json.JSONObject;
 
 public class JsonTest {
 //    protected void checkThingy(String name, Category category, Thingy thingy) {

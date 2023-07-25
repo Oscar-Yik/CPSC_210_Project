@@ -1,0 +1,56 @@
+{
+    "ecosystem": "Forest",
+    "enemies": [
+        {
+            "Health": 15,
+            "Level": 7,
+            "Strength": 14
+        },
+        {
+            "Health": 16,
+            "Level": 7,
+            "Strength": 13
+        },
+        {
+            "Health": 13,
+            "Level": 7,
+            "Strength": 13
+        },
+        {
+            "Health": 6,
+            "Level": 7,
+            "Strength": 13
+        },
+        {
+            "Health": 15,
+            "Level": 7,
+            "Strength": 16
+        },
+        {
+            "Health": 14,
+            "Level": 7,
+            "Strength": 14
+        },
+        {
+            "Health": 15,
+            "Level": 7,
+            "Strength": 14
+        },
+        {
+            "Health": 13,
+            "Level": 7,
+            "Strength": 17
+        }
+    ],
+    "player": [{
+        "Health": 6,
+        "Level": 2,
+        "Movement Speed": 0,
+        "Exp": 0,
+        "Talent": "Range",
+        "Range": 0,
+        "Strength": 5,
+        "Weapon": "Sword",
+        "Name": "Hero"
+    }]
+}
