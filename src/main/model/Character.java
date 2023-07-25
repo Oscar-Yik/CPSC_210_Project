@@ -1,8 +1,8 @@
 package model;
 
-import org.json.JSONObject;
 import persistence.Writable;
 
+import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 

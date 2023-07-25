@@ -62,17 +62,6 @@ public class GameApp {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
 
-
-//        World emptyWorld = new World("Hero");
-//        try {
-//            jsonWriter.open();
-//            jsonWriter.write(emptyWorld);
-//            jsonWriter.close();
-//            System.out.println("Saved to " + JSON_STORE);
-//        } catch (FileNotFoundException e) {
-//            System.out.println("Unable to write to file: " + JSON_STORE);
-//        }
-
     }
 
     // EFFECTS: displays start menu for users

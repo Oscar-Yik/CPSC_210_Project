@@ -13,6 +13,10 @@ public class PlayerTest {
 
     private Player testPlayer;
     private Player testPlayer2;
+    private Player testPlayerTalent1;
+    private Player testPlayerTalent2;
+    private Player testPlayerTalent3;
+    private Player testPlayerTalent4;
     private Enemy testEnemy;
 
     @BeforeEach
@@ -49,7 +53,14 @@ public class PlayerTest {
 
     @Test
     void testReceiveTalent() {
-        assertTrue(testTalent(testPlayer.receiveTalent()));
+        testPlayerTalent1 = new Player("hero");
+        testPlayerTalent2 = new Player("hero");
+        testPlayerTalent3 = new Player("hero");
+        testPlayerTalent4 = new Player("hero");
+        assertTrue(testTalent(testPlayerTalent1.receiveTalent()));
+        assertTrue(testTalent(testPlayerTalent2.receiveTalent()));
+        assertTrue(testTalent(testPlayerTalent3.receiveTalent()));
+        assertTrue(testTalent(testPlayerTalent4.receiveTalent()));
     }
 
     public boolean testTalent(String talent) {
@@ -69,6 +80,22 @@ public class PlayerTest {
         testPlayer.addEXP();
         assertEquals(0,testPlayer.getExp());
         assertEquals(2,testPlayer.getLevel().size());
+    }
+
+    @Test
+    void testToString() {
+        String testPlayerString = "\tName = " + testPlayer.getName() + "\n\tStrength = "
+                + testPlayer.getStrength() + "\n\tHealth = " + testPlayer.getHealth() + ", "
+                + "\n\tLevel = " + testPlayer.getLevel().size() + ", \n\tExp = " + testPlayer.getExp()
+                + "\n\tTalent = " + testPlayer.getTalent() + "\n\tWeapon = " + testPlayer.getWeapon()
+                + "\n\tMovement Speed = " + testPlayer.getMovementSpeed() + "\n\tRange = " + testPlayer.getRange();
+        String testPlayer2String = "\tName = " + testPlayer2.getName() + "\n\tStrength = "
+                + testPlayer2.getStrength() + "\n\tHealth = " + testPlayer2.getHealth() + ", "
+                + "\n\tLevel = " + testPlayer2.getLevel().size() + ", \n\tExp = " + testPlayer2.getExp()
+                + "\n\tTalent = " + testPlayer2.getTalent() + "\n\tWeapon = " + testPlayer2.getWeapon()
+                + "\n\tMovement Speed = " + testPlayer2.getMovementSpeed() + "\n\tRange = " + testPlayer2.getRange();
+        assertEquals(testPlayerString,testPlayer.toString());
+        assertEquals(testPlayer2String,testPlayer2.toString());
     }
 
 

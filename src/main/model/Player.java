@@ -92,12 +92,16 @@ public class Player extends Character {
         switch (rn.nextInt(4)) {
             case 0:
                 this.talent = "Strength";
+                break;
             case 1:
                 this.talent = "Health";
+                break;
             case 2:
                 this.talent = "Movement Speed";
+                break;
             case 3:
                 this.talent = "Range";
+                break;
         }
         return talent;
     }
