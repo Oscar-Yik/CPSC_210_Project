@@ -3,18 +3,22 @@ package ui;
 import model.Enemy;
 import model.Player;
 import model.World;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 
 // Game application
 public class GameApp {
 
+    private static final String JSON_STORE = "./data/testReaderGeneralWorld.json";
     private World world;
-    private Player player;
-    private Enemy monster1;
-    private Enemy monster2;
     private Scanner input;
+    private JsonReader jsonReader;
+    private JsonWriter jsonWriter;
 
     // EFFECTS: runs the game application
     public GameApp() {
@@ -55,6 +59,20 @@ public class GameApp {
         input = new Scanner(System.in);
         input.useDelimiter("\n");
 
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
+
+
+//        World emptyWorld = new World("Hero");
+//        try {
+//            jsonWriter.open();
+//            jsonWriter.write(emptyWorld);
+//            jsonWriter.close();
+//            System.out.println("Saved to " + JSON_STORE);
+//        } catch (FileNotFoundException e) {
+//            System.out.println("Unable to write to file: " + JSON_STORE);
+//        }
+
     }
 
     // EFFECTS: displays start menu for users
@@ -78,20 +96,34 @@ public class GameApp {
             action = input.next();
             action = action.toLowerCase();
 
-            if (action.equals("a")) {
+            if (action.equals("e")) {
+                keepGoing = false;
+            } else if (action.equals("a")) {
                 boolean end = attackEnemies();
                 if (end) {
                     break;
                 }
-            } else if (action.equals("c")) {
-                stats();
-            } else if (action.equals("e")) {
-                keepGoing = false;
             } else {
-                moveCharacter();
+                processCommand(action);
             }
         }
 
+    }
+
+    // MODIFIES: this
+    // EFFECTS: processes user command
+    private void processCommand(String command) {
+        if (command.equals("c")) {
+            printWorld();
+        } else if (command.equals("s")) {
+            saveWorld();
+        } else if (command.equals("l")) {
+            loadWorld();
+        } else if (command.equals("m")) {
+            moveCharacter();
+        } else {
+            System.out.println("Selection not valid...");
+        }
     }
 
     /*
@@ -100,8 +132,12 @@ public class GameApp {
     private void actionMenu() {
         System.out.println("\nWhat do you want to do?:");
         System.out.println("\ta -> Attack Enemies");
-        System.out.println("\tc -> Check Stats");
+        System.out.println("\tc -> Check World Stats");
         System.out.println("\tm -> Move Character");
+
+        System.out.println("\ts -> Save World");
+        System.out.println("\tl -> Load World");
+
         System.out.println("\te -> End Game");
     }
 
@@ -247,18 +283,6 @@ public class GameApp {
     }
 
     /*
-     * EFFECTS: Displays player's stats
-     */
-    private void stats() {
-        Player player = world.getPlayer();
-        System.out.println("Level: " + player.getLevel().size());
-        System.out.println("Strength: " + player.getStrength());
-        System.out.println("Health: " + player.getHealth());
-        System.out.println("Movement Speed: " + player.getMovementSpeed());
-        System.out.println("Range: " + player.getRange());
-    }
-
-    /*
      * EFFECTS: Processes user input for which direction to move
      * and outputs result
      */
@@ -285,6 +309,33 @@ public class GameApp {
             case "d":
                 System.out.println("Player moved right");
                 break;
+        }
+    }
+
+    private void printWorld() {
+        System.out.println(world);
+    }
+
+    // EFFECTS: saves the world to file
+    private void saveWorld() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(world);
+            jsonWriter.close();
+            System.out.println("Saved to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads world from file
+    private void loadWorld() {
+        try {
+            world = jsonReader.read();
+            System.out.println("Loaded from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
 }

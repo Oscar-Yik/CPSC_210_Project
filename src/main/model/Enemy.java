@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 /*
  * Represents an enemy that the player can defeat in the game
  */
@@ -14,6 +16,13 @@ public class Enemy extends Character {
         damageMultiplier = 2;
         levelUp();
         levelUp();
+    }
+
+    public Enemy(int strength, int health) {
+        super();
+        this.strength = strength;
+        this.health = health;
+        damageMultiplier = 2;
     }
 
     /*

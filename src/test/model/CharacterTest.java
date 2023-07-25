@@ -55,6 +55,16 @@ public class CharacterTest {
         assertTrue(statsWithinBounds(oldHel,newHel));
     }
 
+    @Test
+    void testLevelUpValueOnly() {
+        int oldStr = testCharacter.getStrength();
+        int oldHel = testCharacter.getHealth();
+        testCharacter.levelUpValueOnly();
+        assertEquals(1,testCharacter.getLevel().size());
+        assertEquals(oldStr,testCharacter.getStrength());
+        assertEquals(oldHel,testCharacter.getHealth());
+    }
+
     public boolean statsWithinBounds(int oldStat, int newStat) {
         return newStat < oldStat + 4 && newStat > oldStat;
     }

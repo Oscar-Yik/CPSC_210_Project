@@ -13,10 +13,12 @@ public class EnemyTest {
 
     private Enemy testEnemy;
     private Player testPlayer;
+    private Enemy testEnemy2;
 
     @BeforeEach
     void runBefore() {
         testEnemy = new Enemy();
+        testEnemy2 = new Enemy(5,8);
         testPlayer = new Player("testPlayer");
     }
 
@@ -24,6 +26,14 @@ public class EnemyTest {
     void testConstructor() {
         assertEquals(2, testEnemy.getDamageMultiplier());
         assertEquals(2,testEnemy.getLevel().size());
+    }
+
+    @Test
+    void testNewConstructor() {
+        assertEquals(2,testEnemy2.getDamageMultiplier());
+        assertEquals(0,testEnemy2.getLevel().size());
+        assertEquals(5,testEnemy2.getStrength());
+        assertEquals(8,testEnemy2.getHealth());
     }
 
     @Test

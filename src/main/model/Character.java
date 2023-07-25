@@ -1,12 +1,15 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /*
  * Represents the characters in the game such as players and enemies
  */
-public class Character {
+public class Character implements Writable {
 
     protected int strength;
     protected int health;
@@ -78,9 +81,29 @@ public class Character {
     }
 
     /*
+     * MODIFIES: this
+     * EFFECTS: only adds a level to the character without
+     *          extra stat points for the level
+     */
+    public void levelUpValueOnly() {
+        Level lv = new Level();
+        level.add(lv);
+    }
+
+    /*
      * EFFECTS: returns damage taken from an attack
      */
     public int getDamage() {
         return this.strength * this.damageMultiplier;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        //json.put("name", name);
+        json.put("Level", this.level.size());
+        json.put("Strength", this.strength);
+        json.put("Health", this.health);
+        return json;
     }
 }

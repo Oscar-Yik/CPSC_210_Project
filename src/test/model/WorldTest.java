@@ -12,10 +12,16 @@ import static org.junit.jupiter.api.Assertions.*;
 public class WorldTest {
 
     private World testWorld;
+    private World testEmptyWorld;
+    private Player testPlayer;
+    private Enemy testEnemy;
 
     @BeforeEach
     void runBefore() {
        testWorld = new World("testWorld");
+       testEmptyWorld = new World();
+       testPlayer = new Player("testPlayer");
+       testEnemy = new Enemy();
     }
 
     @Test
@@ -23,6 +29,30 @@ public class WorldTest {
         assertEquals(0, testWorld.getMonsters().size());
         assertEquals("testWorld",testWorld.getPlayer().getName());
         assertEquals("Forest", testWorld.getEcosystem());
+    }
+
+    @Test
+    void testNewConstructor() {
+        assertEquals(0, testEmptyWorld.getMonsters().size());
+        assertEquals("Forest", testEmptyWorld.getEcosystem());
+    }
+
+    @Test
+    void testSetEcosystem() {
+        assertEquals("Forest", testWorld.getEcosystem());
+        assertEquals("Desert", testWorld.setEcosystem("Desert"));
+    }
+
+    @Test
+    void testAddPlayer() {
+        testWorld.addPlayer(testPlayer);
+        assertEquals(testPlayer,testWorld.getPlayer());
+    }
+
+    @Test
+    void testAddCertainMonsters() {
+        testWorld.addMonsters(testEnemy);
+        assertEquals(testEnemy,testWorld.getMonsters().get(0));
     }
 
     @Test
