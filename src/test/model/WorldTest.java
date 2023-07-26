@@ -82,13 +82,20 @@ public class WorldTest {
 
     @Test
     void testToString() {
-
+        testWorld.addMonsters();
+        testWorld.addMonsters();
         String enemies = "";
         int count = 1;
         for (Enemy monster : testWorld.getMonsters()) {
             enemies = enemies + "\tMonster " + count + ": " + monster.toString() + "\n";
             count++;
         }
+        String testEnemy1 = "\tMonster " + 1 + ": " + testWorld.getMonsters().get(0).toString() + "\n";
+        String testEnemy2 = "\tMonster " + 2 + ": " + testWorld.getMonsters().get(1).toString() + "\n";
+        String testEnemies = testEnemy1 + testEnemy2;
+
+        assertEquals(testEnemies,enemies);
+
         String testWorldString = "Player: \n" + testWorld.getPlayer() + ", \nEnemies: \n" + enemies
                 + "Ecosystem = " + testWorld.getEcosystem();
 
