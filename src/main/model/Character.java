@@ -97,6 +97,9 @@ public class Character implements Writable {
         return this.strength * this.damageMultiplier;
     }
 
+    /*
+     * EFFECTS: returns this character as a JSONObject
+     */
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

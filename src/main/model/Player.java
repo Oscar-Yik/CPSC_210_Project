@@ -48,7 +48,7 @@ public class Player extends Character {
         super();
         name = playerName;
         rn = new Random();
-        talent = receiveTalent();
+        talent = receiveTalent(4);
         weapon = "Sword";
         damageMultiplier = 2;
         exp = 0;
@@ -88,8 +88,8 @@ public class Player extends Character {
      * EFFECTS: returns talent which is randomly chosen as one of
      * Strength, Health Movement Speed, Range
      */
-    public String receiveTalent() {
-        switch (rn.nextInt(4)) {
+    public String receiveTalent(int upperBound) {
+        switch (rn.nextInt(upperBound)) {
             case 0:
                 this.talent = "Strength";
                 break;
@@ -102,6 +102,8 @@ public class Player extends Character {
             case 3:
                 this.talent = "Range";
                 break;
+            default:
+                this.talent = "No Talent";
         }
         return talent;
     }
@@ -140,7 +142,9 @@ public class Player extends Character {
                 + "\n\tRange = " + range;
     }
 
-
+    /*
+     * EFFECTS: returns this player as a JSONObject
+     */
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

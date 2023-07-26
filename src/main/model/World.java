@@ -96,6 +96,7 @@ public class World implements Writable {
         return output;
     }
 
+    // EFFECTS: returns this world as a JSONObject
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -112,7 +113,7 @@ public class World implements Writable {
         return jsonArray;
     }
 
-    // EFFECTS: returns things in this workroom as a JSON array
+    // EFFECTS: returns enemies in this world as a JSON array
     private JSONArray enemiesToJson() {
         JSONArray jsonArray = new JSONArray();
 

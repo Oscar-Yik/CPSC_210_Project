@@ -6,7 +6,9 @@ import org.json.JSONObject;
 
 import java.io.*;
 
-// Represents a writer that writes JSON representation of workroom to file
+// Represents a writer that writes JSON representation of world to file
+// Citation(?):
+// This class is modeled after the JsonWriter class in the JsonSerializationDemo starter file
 public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;
@@ -25,7 +27,7 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: writes JSON representation of workroom to file
+    // EFFECTS: writes JSON representation of world to file
     public void write(World world) {
         JSONObject json = world.toJson();
         saveToFile(json.toString(TAB));

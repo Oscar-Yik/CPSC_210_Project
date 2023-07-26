@@ -8,7 +8,7 @@ import java.util.List;
 public class Enemy extends Character {
 
     /*
-     * EFFECTS: Constructs an Enemy object with damageMultiplier = 1
+     * EFFECTS: Constructs an Enemy object with damageMultiplier = 2
      * and 2 levels
      */
     public Enemy() {
@@ -18,6 +18,10 @@ public class Enemy extends Character {
         levelUp();
     }
 
+    /*
+     * EFFECTS: Constructs an Enemy object with damageMultiplier = 2,
+     * a given strength and health
+     */
     public Enemy(int strength, int health) {
         super();
         this.strength = strength;

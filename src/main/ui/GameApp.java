@@ -301,6 +301,7 @@ public class GameApp {
         }
     }
 
+    // EFFECTS: prints the world's information
     private void printWorld() {
         System.out.println(world);
     }

@@ -11,7 +11,11 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// Citation(?):
+// This class is modeled after the JsonReaderTest class in the
+// JsonSerializationDemo starter file
 class JsonReaderTest extends JsonTest {
+
 
     @Test
     void testReaderNonExistentFile() {

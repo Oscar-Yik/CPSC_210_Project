@@ -11,7 +11,9 @@ import model.Player;
 import model.World;
 import org.json.*;
 
-// Represents a reader that reads workroom from JSON data stored in file
+// Represents a reader that reads world from JSON data stored in file
+// Citation(?):
+// This class is modeled after the JsonReader class in the JsonSerializationDemo starter file
 public class JsonReader {
     private String source;
 
@@ -20,12 +22,12 @@ public class JsonReader {
         this.source = source;
     }
 
-    // EFFECTS: reads workroom from file and returns it;
+    // EFFECTS: reads world from file and returns it;
     // throws IOException if an error occurs reading data from file
     public World read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
-        return parseWorkRoom(jsonObject);
+        return parseWorld(jsonObject);
     }
 
     // EFFECTS: reads source file as string and returns it
@@ -40,7 +42,7 @@ public class JsonReader {
     }
 
     // EFFECTS: parses world from JSON object and returns it
-    private World parseWorkRoom(JSONObject jsonObject) {
+    private World parseWorld(JSONObject jsonObject) {
         World w = new World();
         addMonsters(w, jsonObject);
         addPlayer(w, jsonObject);

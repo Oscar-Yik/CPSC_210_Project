@@ -10,11 +10,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.json.JSONObject;
 
+// Helper methods for the JsonReaderTest and JsonWriterTest classes
 public class JsonTest {
-//    protected void checkThingy(String name, Category category, Thingy thingy) {
-//        assertEquals(name, thingy.getName());
-//        assertEquals(category, thingy.getCategory());
-//    }
+
     protected void checkPlayerEquals(World w) {
         checkStatRange(w.getPlayer().getLevel().size(),w.getPlayer().getHealth());
         checkStatRange(w.getPlayer().getLevel().size(),w.getPlayer().getStrength());
@@ -25,11 +23,21 @@ public class JsonTest {
         assertEquals("Sword", w.getPlayer().getWeapon());
         assertEquals("Hero", w.getPlayer().getName());
         assertEquals(1, w.getPlayer().getLevel().size());
-        assertEquals("Range", w.getPlayer().getTalent());
+        //assertEquals("Range", w.getPlayer().getTalent());
+        assertTrue(testTalent(w.getPlayer().getTalent()));
     }
 
     private boolean testTalent(String talent) {
-        return talent == "Strength" || talent == "Health" || talent == "Movement Speed" || talent == "Range";
+        if (talent.equals("Strength")) {
+            return true;
+        } else if (talent.equals("Health")) {
+            return true;
+        } else if (talent.equals("Movement Speed")) {
+            return true;
+        } else if (talent.equals("Range")) {
+            return true;
+        }
+        return false;
     }
 
     protected void checkStatRange(int lv, int stat) {

@@ -2,22 +2,22 @@
     "ecosystem": "Forest",
     "enemies": [
         {
-            "Health": 3,
+            "Health": 5,
             "Level": 2,
-            "Strength": 4
+            "Strength": 3
         },
         {
-            "Health": 3,
+            "Health": 4,
             "Level": 2,
-            "Strength": 2
+            "Strength": 4
         }
     ],
     "player": [{
-        "Health": 3,
+        "Health": 1,
         "Level": 1,
         "Movement Speed": 0,
         "Exp": 0,
-        "Talent": "Range",
+        "Talent": "Health",
         "Range": 0,
         "Strength": 1,
         "Weapon": "Sword",

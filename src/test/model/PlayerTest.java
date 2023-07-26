@@ -4,6 +4,8 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Random;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /*
@@ -17,6 +19,7 @@ public class PlayerTest {
     private Player testPlayerTalent2;
     private Player testPlayerTalent3;
     private Player testPlayerTalent4;
+    private Player testPlayerTalent5;
     private Enemy testEnemy;
 
     @BeforeEach
@@ -57,10 +60,12 @@ public class PlayerTest {
         testPlayerTalent2 = new Player("hero");
         testPlayerTalent3 = new Player("hero");
         testPlayerTalent4 = new Player("hero");
-        assertTrue(testTalent(testPlayerTalent1.receiveTalent()));
-        assertTrue(testTalent(testPlayerTalent2.receiveTalent()));
-        assertTrue(testTalent(testPlayerTalent3.receiveTalent()));
-        assertTrue(testTalent(testPlayerTalent4.receiveTalent()));
+        testPlayerTalent5 = new Player("hero");
+        assertTrue(testTalent(testPlayerTalent1.receiveTalent(4)));
+        assertTrue(testTalent(testPlayerTalent2.receiveTalent(4)));
+        assertTrue(testTalent(testPlayerTalent3.receiveTalent(4)));
+        assertTrue(testTalent(testPlayerTalent4.receiveTalent(4)));
+        assertFalse(testTalent(testPlayerTalent5.receiveTalent(800)));
     }
 
     public boolean testTalent(String talent) {
