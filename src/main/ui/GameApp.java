@@ -14,7 +14,7 @@ import java.util.Scanner;
 // Game application
 public class GameApp {
 
-    private static final String JSON_STORE = "./data/testReaderGeneralWorld.json";
+    private static final String JSON_STORE = "./data/world.json";
     private World world;
     private Scanner input;
     private JsonReader jsonReader;
