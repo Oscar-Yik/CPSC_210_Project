@@ -35,3 +35,21 @@ in various ways. The exact implementation and detail of these features may vary 
 - As a user, I want to view the level of my character when I play the game
 - As a user, I want to be able to see my abilities when playing
 - As a user, I want to be able to select which enemy my character is targeting
+
+## Instructions for Grader
+- You can generate the first required action related to adding X's to Y by
+  - pressing the "Start Game" button with the mouse 
+  - moving the player with the "W, A, S, D" keys on the keyboard 
+  - the first action is that the all enemies follow you
+- You can generate the first required action related to adding X's to Y by 
+  - continuing from the first action, 
+    - clicking the mouse when the player is close to the enemies
+    - both the player and the enemy's health bar decreases
+- You can locate my visual component by pressing the "Start Game" button with the mouse
+- You can save the state of my application by
+  - pressing "Start Game" with the mouse
+  - pressing the "escape" key on the keyboard 
+  - pressing the "Save" button with your mouse
+- You can reload the state of my application by pressing the "Load" button with the mouse
+
+You can also add an arbitrary number of enemies to the game by pressing the "+" button on the menu
