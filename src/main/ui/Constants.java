@@ -1,5 +1,8 @@
 package ui;
 
+/*
+ * Represents most constant values used in the game
+ */
 public class Constants {
 
     public static class UI {
@@ -14,6 +17,9 @@ public class Constants {
 
             public static final int B_HEIGHT = 28;
 
+            /*
+             * EFFECTS: returns button width of menu buttons
+             */
             public static int getButtonWidth(int button) {
                 switch (button) {
                     case NEW_GAME:
@@ -31,6 +37,9 @@ public class Constants {
                 }
             }
 
+            /*
+             * EFFECTS: returns button x position of menu buttons
+             */
             public static int getButtonXPos(int button) {
                 switch (button) {
                     case NEW_GAME:
@@ -60,6 +69,9 @@ public class Constants {
             public static final int HOME = 1;
             public static final int ADD = 2;
 
+            /*
+             * EFFECTS: returns button x position of pause buttons
+             */
             public static int getPauseButtonPosX(int button) {
                 switch (button) {
                     case CONTINUE:
@@ -73,6 +85,9 @@ public class Constants {
                 }
             }
 
+            /*
+             * EFFECTS: returns button y position of pause buttons
+             */
             public static int getPauseButtonPosY(int button) {
                 switch (button) {
                     case CONTINUE:

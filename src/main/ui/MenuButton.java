@@ -8,11 +8,17 @@ import static ui.Constants.UI.SaveLoadButtons.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/*
+ * Represents a button on the menu game state
+ */
 public class MenuButton extends Button {
 
     private int offsetCenterX;
     private Gamestate state;
 
+    /*
+     * EFFECTS: constructs a menu button with a given functionality and position
+     */
     public MenuButton(int posX, int posY, int button) {
         super(posX, posY, button);
         offsetCenterX = 0;
@@ -24,6 +30,9 @@ public class MenuButton extends Button {
         createBounds();
     }
 
+    /*
+     * EFFECTS: constructs a menu button with a position and gamestate change
+     */
     public MenuButton(int posX, int posY, int button, Gamestate state) {
         super(posX, posY, button);
         this.state = state;
@@ -32,6 +41,10 @@ public class MenuButton extends Button {
         createBounds();
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: creates hitbox depending on button type
+     */
     @Override
     public void createBounds() {
         if (button == ADD) {
@@ -43,6 +56,10 @@ public class MenuButton extends Button {
         }
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: imports menu button image from data folder to an array
+     */
     @Override
     protected void loadImages() {
         int emptySpace = 4;
@@ -54,6 +71,10 @@ public class MenuButton extends Button {
         }
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: imports a different set of menu buttons
+     */
     protected void loadImages2() {
         int emptySpace = 2;
         int x;
@@ -66,6 +87,10 @@ public class MenuButton extends Button {
         }
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: imports a third set of menu buttons
+     */
     protected void loadImages3() {
         BufferedImage temp = LoadImages.getSpriteAtlas(LoadImages.SAVE_LOAD);
         imgs = new BufferedImage[3];
@@ -75,6 +100,10 @@ public class MenuButton extends Button {
         }
     }
 
+    /*
+     * MODIFIES: GamePanel
+     * EFFECTS: draws menu button on menu display
+     */
     @Override
     public void draw(Graphics g) {
         if (button == ADD) {
@@ -86,6 +115,10 @@ public class MenuButton extends Button {
         }
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: checks if cursor is over or presses the menu button
+     */
     @Override
     public void update() {
         index = 0;
@@ -97,6 +130,10 @@ public class MenuButton extends Button {
         }
     }
 
+    /*
+     * MODIFIES: state
+     * EFFECTS: sets gamestate to menu button's game state
+     */
     public void applyGamestate() {
         Gamestate.setState(state);
     }

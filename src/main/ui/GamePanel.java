@@ -6,10 +6,16 @@ import java.awt.*;
 import static ui.Game.GAME_WIDTH;
 import static ui.Game.GAME_HEIGHT;
 
+/*
+ * Represents the panel whee images are drawn
+ */
 public class GamePanel extends JPanel {
     private MouseInputs mouseInputs;
     private Game game;
 
+    /*
+     * EFFECTS: constructs a new game panel with keyboard and mouse inputs
+     */
     public GamePanel(Game game) {
         mouseInputs = new MouseInputs(this);
         this.game = game;
@@ -20,12 +26,19 @@ public class GamePanel extends JPanel {
         addMouseMotionListener(mouseInputs);
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: sets game panel to a certain size
+     */
     private void setPanelSize() {
         Dimension size = new Dimension(GAME_WIDTH,GAME_HEIGHT);
         setPreferredSize(size);
         //System.out.println("size: " + GAME_WIDTH + " : " + GAME_HEIGHT);
     }
 
+    /*
+     * EFFECTS: draws the game on the panel
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);

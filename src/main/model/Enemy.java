@@ -7,6 +7,10 @@ import ui.Character;
  */
 public class Enemy extends Character {
 
+    /*
+     * EFFECTS: Constructs an Enemy object with a hitbox, position, 2 levels,
+     *          and 70 max and current health
+     */
     public Enemy(float x, float y, int width, int height) {
         super(x,y,width,height);
         initHitbox(x,y,width,height);
@@ -18,8 +22,7 @@ public class Enemy extends Character {
     }
 
     /*
-     * EFFECTS: Constructs an Enemy object with damageMultiplier = 2
-     * and 2 levels
+     * EFFECTS: Constructs an Enemy object with 2 levels, 70 current and max health
      */
     public Enemy() {
         super();
@@ -30,8 +33,7 @@ public class Enemy extends Character {
     }
 
     /*
-     * EFFECTS: Constructs an Enemy object with damageMultiplier = 2,
-     * a given strength and health
+     * EFFECTS: Constructs an Enemy object with a given strength and health
      */
     public Enemy(int strength, int health) {
         super();

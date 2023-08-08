@@ -12,6 +12,10 @@ public class Player extends Character {
 
     private Random rn;
 
+    /*
+     * EFFECTS: Constructs a player with a given position, 50 strength,
+     *          2 levels, and currentHealth = maxHealth
+     */
     public Player(float x, float y) {
         super(x,y,144,144);
         this.strength = 50;
@@ -21,8 +25,7 @@ public class Player extends Character {
     }
 
     /*
-     * EFFECTS: Constructs a player with a given name, weapon, movement speed
-     * range, exp, damageMultiplier = 2, strength, and health
+     * EFFECTS: Constructs a player with a given strength, maxHealth, and level
      */
     public Player(int strength, int health, int level) {
         for (int i = level; i > 0; i--) {
@@ -33,9 +36,7 @@ public class Player extends Character {
     }
 
     /*
-     * REQUIRES: playerName has a non-zero length
-     * EFFECTS: Constructs a player with a name, random talent, sword
-     * weapon, damageMultiplier = 2, no exp, and 1 level
+     * EFFECTS: Constructs a player with a level
      */
     public Player() {
         super();

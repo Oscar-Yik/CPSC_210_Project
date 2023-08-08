@@ -5,6 +5,9 @@ import persistence.JsonReader;
 import java.awt.*;
 import java.io.IOException;
 
+/*
+ * Represents the game that can be played
+ */
 public class Game implements Runnable {
     private GameWindow gameWindow;
     private GamePanel gamePanel;
@@ -20,6 +23,9 @@ public class Game implements Runnable {
     public static final int GAME_WIDTH = 1248;
     public static final int GAME_HEIGHT = 672;
 
+    /*
+     * EFFECTS: constructs a game with a panel, window, and starts the game loop
+     */
     public Game() {
         initClasses();
         gamePanel = new GamePanel(this);
@@ -29,17 +35,29 @@ public class Game implements Runnable {
         startGameLoop();
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: initializes all classes
+     */
     private void initClasses() {
         menu = new Menu(this);
         playing = new Playing(this);
         jsonReader = new JsonReader(JSON_STORE);
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: starts the game loop
+     */
     private void startGameLoop() {
         gameThread = new Thread(this);
         gameThread.start();
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: updates game data
+     */
     public void update() {
 
         switch (Gamestate.getState()) {
@@ -56,6 +74,9 @@ public class Game implements Runnable {
         }
     }
 
+    /*
+     * EFFECTS: draws the game
+     */
     public void render(Graphics g) {
 
         switch (Gamestate.getState()) {
@@ -71,6 +92,10 @@ public class Game implements Runnable {
 
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: runs game loop and separates tasks to different threads
+     */
     @Override
     public void run() {
 
@@ -88,6 +113,10 @@ public class Game implements Runnable {
         runGameLoop(timePerFrame,timePerUpdate,previousTime,frames,updates,lastCheck,deltaU,deltaF);
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: runs the game loop
+     */
     private void runGameLoop(double timePerFrame, double timePerUpdate, long previousTime, int frames, int updates,
                              long lastCheck, double deltaU, double deltaF) {
         while (true) {
@@ -118,6 +147,10 @@ public class Game implements Runnable {
         }
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: checks if player is offscreen
+     */
     public void windowFocusLost() {
         if (Gamestate.getState() == Gamestate.PLAYING) {
             playing.getPlayer().resetDirBooleans();
@@ -132,6 +165,10 @@ public class Game implements Runnable {
         return this.playing;
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: adds number of enemies to the game
+     */
     public void addEnemies() {
         numEnemies++;
     }
@@ -144,6 +181,10 @@ public class Game implements Runnable {
         this.numEnemies = numEnemies;
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: loads game save data
+     */
     public void loadGame() {
         try {
             playing = jsonReader.read(this);

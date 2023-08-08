@@ -9,6 +9,9 @@ import java.awt.image.BufferedImage;
 
 import static ui.Constants.PlayerConstants.*;
 
+/*
+ * Represents the player object's UI
+ */
 public class PlayerUI extends Player {
 
     private BufferedImage[][] animations;
@@ -33,6 +36,9 @@ public class PlayerUI extends Player {
     private boolean attackChecked;
     private Playing playing;
 
+    /*
+     * EFFECTS: constructs a PlayerUI object with a given position in the playing state
+     */
     public PlayerUI(float x, float y, Playing playing) {
         super(x,y);
         this.playing = playing;
@@ -41,12 +47,18 @@ public class PlayerUI extends Player {
         initAttackBox();
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: initializes the player's attackbox
+     */
     private void initAttackBox() {
         attackBox = new Rectangle2D.Float(posX,posY,200,200);
     }
 
-
-
+    /*
+     * MODIFIES: this
+     * EFFECTS: updates the player's data
+     */
     public void update() {
         updateHealthBar();
 
@@ -64,6 +76,10 @@ public class PlayerUI extends Player {
         setAnimation();
     }
 
+    /*
+     * MODIFIES: playing
+     * EFFECTS: checks if the player can attack the enemy
+     */
     private void checkAttack() {
         if (attackChecked) {
             return;
@@ -72,6 +88,10 @@ public class PlayerUI extends Player {
         playing.checkEnemyHit(attackBox, strength);
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: updates the player's attackbox
+     */
     private void updateAttackBox() {
         if (right) {
             attackBox.x = hitbox.x + hitbox.width + 10;
@@ -81,6 +101,10 @@ public class PlayerUI extends Player {
         attackBox.y = hitbox.y + 10;
     }
 
+    /*
+     * MODIFIES: Game Panel
+     * EFFECTS: draws the player on the game panel
+     */
     public void render(Graphics g, int offsetX, int offsetY) {
         g.drawImage(animations[playerAction][aniIndex], (int) (hitbox.x - drawOffsetX) - offsetX + flipX,
                 (int) (hitbox.y - drawOffsetY) - offsetY, 144 * flipW, 144, null);
@@ -89,6 +113,10 @@ public class PlayerUI extends Player {
         drawUI(g, offsetX, offsetY);
     }
 
+    /*
+     * MODIFIES: Game Panel
+     * EFFECTS: draws the player's attack box
+     */
     private void drawAttackBox(Graphics g, int offsetX, int offsetY) {
         g.setColor(Color.RED);
         g.drawRect((int) attackBox.x - offsetX,(int) attackBox.y - offsetY,
@@ -127,6 +155,10 @@ public class PlayerUI extends Player {
         this.flipW = flipW;
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: sets the player's animation depending on the action
+     */
     private void setAnimation() {
         int startAni = playerAction;
 
@@ -152,11 +184,19 @@ public class PlayerUI extends Player {
         }
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: resets animation tick and index
+     */
     private void resetAniTick() {
         aniTick = 0;
         aniIndex = 0;
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: checks if player can move in the north directions
+     */
     private void checkNorthDirections() {
         if (up) {
             playerAction = WALKING_N;
@@ -168,6 +208,10 @@ public class PlayerUI extends Player {
         }
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: checks if player can move in the south directions
+     */
     private void checkSouthDirections() {
         if (down) {
             playerAction = WALKING_S;
@@ -179,6 +223,10 @@ public class PlayerUI extends Player {
         }
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: changes player's directions
+     */
     private void updatePosition() {
         moving = false;
 
@@ -207,6 +255,10 @@ public class PlayerUI extends Player {
         move(speedX,speedY);
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: moves the player
+     */
     private void move(float speedX, float speedY) {
         if (canMoveHere(hitbox.x + speedX, hitbox.y + speedY, hitbox.width, hitbox.height)) {
             hitbox.x += speedX;
@@ -215,6 +267,10 @@ public class PlayerUI extends Player {
         }
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: checks if player can move in the game panel
+     */
     private boolean canMoveHere(float x, float y, float width, float height) {
         float realX = x + width;
         float realY = y + height;
@@ -225,6 +281,10 @@ public class PlayerUI extends Player {
         return false;
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: imports the player's image data
+     */
     private void loadAnimations() {
         BufferedImage img = LoadImages.getSpriteAtlas(LoadImages.PLAYER_ATLAS);
         BufferedImage img0 = LoadImages.getSpriteAtlas(LoadImages.ATTACK_ATLAS);
@@ -238,6 +298,10 @@ public class PlayerUI extends Player {
         }
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: updates player's animation sprites
+     */
     private void updateAnimationTick() {
         aniTick++;
         if (aniTick >= aniSpeed) {
@@ -251,6 +315,10 @@ public class PlayerUI extends Player {
         }
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: resets player's directions
+     */
     public void resetDirBooleans() {
         left = false;
         right = false;
@@ -294,6 +362,10 @@ public class PlayerUI extends Player {
         this.attacking = attacking;
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: resets all player data
+     */
     public void resetAll() {
         resetDirBooleans();
         attacking = false;
@@ -323,6 +395,9 @@ public class PlayerUI extends Player {
         return json;
     }
 
+    /*
+     * EFFECTS: parses player hitbox data to JSONObject
+     */
     private void toJsonHitbox(JSONObject json) {
         json.put("hitboxX", hitbox.x);
         json.put("hitboxY", hitbox.y);
@@ -330,6 +405,9 @@ public class PlayerUI extends Player {
         json.put("hitboxH", hitbox.height);
     }
 
+    /*
+     * EFFECTS: parses player attackbox data to JSONObject
+     */
     private void toJsonAttackbox(JSONObject json) {
         json.put("attackboxX", attackBox.x);
         json.put("attackboxY", attackBox.y);
@@ -337,6 +415,9 @@ public class PlayerUI extends Player {
         json.put("attackboxH", attackBox.height);
     }
 
+    /*
+     * EFFECTS: parses player UI data to JSONObject
+     */
     private void toJsonUI(JSONObject json) {
         json.put("aniTick", aniTick);
         json.put("aniIndex", aniIndex);

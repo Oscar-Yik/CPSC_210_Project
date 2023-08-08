@@ -4,7 +4,6 @@ import model.Level;
 import persistence.Writable;
 
 import org.json.JSONObject;
-import ui.LoadImages;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
@@ -41,7 +40,7 @@ public class Character implements Writable {
     private int healthWidth = healthBarWidth;
 
     /*
-     * EFFECTS: Constructs a new character with no levels
+     * EFFECTS: Constructs a new character with given position
      */
     public Character(float x, float y, int width, int height) {
         this.posX = x;
@@ -55,6 +54,9 @@ public class Character implements Writable {
         level = new ArrayList<>();
     }
 
+    /*
+     * EFFECTS: Constructs a new character with no levels
+     */
     public Character() {
         level = new ArrayList<>();
     }
@@ -93,7 +95,6 @@ public class Character implements Writable {
 
     public void setCurrentHealth(int currentHealth) {
         this.currentHealth = currentHealth;
-        System.out.println(currentHealth);
     }
 
     public void setHitboxX(float x) {
@@ -114,7 +115,6 @@ public class Character implements Writable {
 
     public void setMaxHealth(int maxHealth) {
         this.maxHealth = maxHealth;
-        System.out.println(maxHealth);
     }
 
     /*
@@ -137,6 +137,10 @@ public class Character implements Writable {
         return this.hitbox;
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: updates character's health bar
+     */
     protected void updateHealthBar() {
         float healthRatio = (currentHealth / (float) maxHealth);
         healthWidth = (int) (healthRatio * healthBarWidth);
@@ -146,6 +150,9 @@ public class Character implements Writable {
         healthSubImage = healthImg.getSubimage(11,18, (int) (332 * healthRatio) + 1, healthBarHeight);
     }
 
+    /*
+     * EFFECTS: draws character's health bar
+     */
     protected void drawUI(Graphics g, int offsetX, int offsetY) {
         statusBarSubImage = statusBarImg.getSubimage(14,20, 351, 49);
 
@@ -155,6 +162,10 @@ public class Character implements Writable {
                 healthWidth,healthBarHeight,null);
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: adds health to character's health bar
+     */
     public void changeHealth(int strength) {
         currentHealth += strength;
 

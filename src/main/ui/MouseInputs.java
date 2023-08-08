@@ -4,13 +4,23 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+/*
+ * Represents the mouse inputs to the game
+ */
 public class MouseInputs implements MouseListener, MouseMotionListener {
     private GamePanel gamePanel;
 
+    /*
+     * EFFECTS: contructs a mouse input object that interacts with the game Panel
+     */
     public MouseInputs(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
     }
 
+    /*
+     * MODIFIES: game panel
+     * EFFECTS: checks if mouse is clicked
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         switch (Gamestate.getState()) {
@@ -22,6 +32,10 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
         }
     }
 
+    /*
+     * MODIFIES: Game Panel
+     * EFFECTS: checks if mouse moved on the gamepanel
+     */
     @Override
     public void mouseMoved(MouseEvent e) {
         switch (Gamestate.getState()) {
@@ -36,6 +50,10 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
         }
     }
 
+    /*
+     * MODIFIES: Game Panel
+     * EFFECTS: checks if mouse pressed on the gamepanel
+     */
     @Override
     public void mousePressed(MouseEvent e) {
         switch (Gamestate.getState()) {
@@ -50,6 +68,10 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
         }
     }
 
+    /*
+     * MODIFIES: Game Panel
+     * EFFECTS: checks if mouse is released on the gamepanel
+     */
     @Override
     public void mouseReleased(MouseEvent e) {
         switch (Gamestate.getState()) {

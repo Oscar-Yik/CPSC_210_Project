@@ -13,6 +13,9 @@ import java.io.FileNotFoundException;
 
 import persistence.JsonWriter;
 
+/*
+ * Represents the playing game state of the game
+ */
 public class Playing extends State implements Statemethods, Writable {
 
     private static final String JSON_STORE = "./data/world.json";
@@ -40,11 +43,17 @@ public class Playing extends State implements Statemethods, Writable {
     private boolean gameOver = false;
     private boolean gameWin = false;
 
+    /*
+     * EFFECTS: constructs a playing game state in the game
+     */
     public Playing(Game game) {
         super(game);
         initClasses();
     }
 
+    /*
+     * EFFECTS: initializes all the classes that the playing state uses
+     */
     private void initClasses() {
         worldHandler = new WorldHandler(game);
         player = new PlayerUI(Game.GAME_WIDTH / 2,Game.GAME_HEIGHT / 2, this);
@@ -55,6 +64,10 @@ public class Playing extends State implements Statemethods, Writable {
         jsonWriter = new JsonWriter(JSON_STORE);
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: updates the playing state's data
+     */
     @Override
     public void update() {
         if (!paused && !gameOver && !gameWin) {
@@ -69,6 +82,10 @@ public class Playing extends State implements Statemethods, Writable {
         }
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: checks if the player is too close to the boundary in the x direction
+     */
     private void checkCloseToBorderX() {
         int playerX = (int) player.getHitbox().x;
         int diff = playerX - lvlOffsetX;
@@ -86,6 +103,10 @@ public class Playing extends State implements Statemethods, Writable {
         }
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: checks if the player is too close to the boundary in the y direction
+     */
     private void checkCloseToBorderY() {
         int playerY = (int) player.getHitbox().y;
         int diff = playerY - lvlOffsetY;
@@ -103,6 +124,10 @@ public class Playing extends State implements Statemethods, Writable {
         }
     }
 
+    /*
+     * MODIFIES: Game Panel
+     * EFFECTS: draws the playing state
+     */
     @Override
     public void draw(Graphics g) {
         worldHandler.draw(g, lvlOffsetX, lvlOffsetY);
@@ -120,6 +145,10 @@ public class Playing extends State implements Statemethods, Writable {
         }
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: checks if mouse was clicked on the playing state
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         if (!gameOver && !gameWin) {
@@ -129,6 +158,10 @@ public class Playing extends State implements Statemethods, Writable {
         }
     }
 
+    /*
+     * MODIFIES: this, pauseOverlay
+     * EFFECTS: checks if mouse was pressed on the playing state
+     */
     @Override
     public void mousePressed(MouseEvent e) {
         if (!gameOver && !gameWin) {
@@ -138,6 +171,10 @@ public class Playing extends State implements Statemethods, Writable {
         }
     }
 
+    /*
+     * MODIFIES: this, pauseOverlay
+     * EFFECTS: checks if mouse was released on the playing state
+     */
     @Override
     public void mouseReleased(MouseEvent e) {
         if (!gameOver && !gameWin) {
@@ -147,6 +184,10 @@ public class Playing extends State implements Statemethods, Writable {
         }
     }
 
+    /*
+     * MODIFIES: this, pauseOverlay
+     * EFFECTS: checks if mouse was moved on the playing state
+     */
     @Override
     public void mouseMoved(MouseEvent e) {
         if (!gameOver && !gameWin) {
@@ -156,6 +197,10 @@ public class Playing extends State implements Statemethods, Writable {
         }
     }
 
+    /*
+     * MODIFIES: this, player, gameoverOverlay
+     * EFFECTS: checks if key was pressed on the playing state
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         if (gameOver) {
@@ -183,6 +228,10 @@ public class Playing extends State implements Statemethods, Writable {
         }
     }
 
+    /*
+     * MODIFIES: this, player, gameoverOverlay
+     * EFFECTS: checks if key was released on the playing state
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         if (!gameOver && !gameWin) {
@@ -203,6 +252,10 @@ public class Playing extends State implements Statemethods, Writable {
         }
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: unpauses the game
+     */
     public void unpauseGame() {
         paused = false;
     }
@@ -211,6 +264,10 @@ public class Playing extends State implements Statemethods, Writable {
         return this.player;
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: resets all data in the playing game state
+     */
     public void resetAll() {
         gameOver = false;
         gameWin = false;
@@ -219,6 +276,10 @@ public class Playing extends State implements Statemethods, Writable {
         enemyHandler.resetAllEnemies();
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: checks if player has hit an enemy
+     */
     public void checkEnemyHit(Rectangle2D.Float attackBox, int strength) {
         enemyHandler.checkEnemyHit(attackBox, lvlOffsetX, lvlOffsetY, strength);
     }
@@ -251,6 +312,10 @@ public class Playing extends State implements Statemethods, Writable {
         this.lvlOffsetY = lvlOffsetY;
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: saves the game
+     */
     public void saveGame() {
         try {
             jsonWriter.open();
@@ -262,6 +327,9 @@ public class Playing extends State implements Statemethods, Writable {
         }
     }
 
+    /*
+     * EFFECTS: returns JSON representation of playing state
+     */
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -274,14 +342,14 @@ public class Playing extends State implements Statemethods, Writable {
         return json;
     }
 
-    // EFFECTS: returns player in this world as a JSON array
+    // EFFECTS: returns player in this playing object as a JSON array
     private JSONArray playerToJson() {
         JSONArray jsonArray = new JSONArray();
         jsonArray.put(player.toJson());
         return jsonArray;
     }
 
-    // EFFECTS: returns enemies in this world as a JSON array
+    // EFFECTS: returns enemies in this playing object as a JSON array
     private JSONArray enemiesToJson() {
         JSONArray jsonArray = new JSONArray();
 

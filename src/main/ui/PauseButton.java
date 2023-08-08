@@ -6,11 +6,17 @@ import static ui.Constants.UI.SaveLoadButtons.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/*
+ * Represents a pause button on the pause overlay
+ */
 public class PauseButton extends Button {
 
     private int width;
     private int height;
 
+    /*
+     * EFFECTS: constructs a pause button with a given position and type
+     */
     public PauseButton(int x, int y, int width, int height, int button) {
         super(x,y,button);
         this.width = width;
@@ -23,6 +29,10 @@ public class PauseButton extends Button {
         }
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: imports a pause button image
+     */
     @Override
     protected void loadImages() {
         int emptySpace = 2;
@@ -36,6 +46,10 @@ public class PauseButton extends Button {
         }
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: imports a 2nd type of pause button image
+     */
     protected void loadImages2() {
         BufferedImage temp = LoadImages.getSpriteAtlas(LoadImages.SAVE_LOAD);
         imgs = new BufferedImage[3];
@@ -61,6 +75,10 @@ public class PauseButton extends Button {
         this.height = height;
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: updates pause button data
+     */
     @Override
     public void update() {
         index = 0;
@@ -72,6 +90,10 @@ public class PauseButton extends Button {
         }
     }
 
+    /*
+     * MODIFIES: Game Panel
+     * EFFECTS: draws the pause button on the game panel
+     */
     @Override
     public void draw(Graphics g) {
         if (button == SAVE) {
@@ -81,6 +103,10 @@ public class PauseButton extends Button {
         }
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: creates hitbox for the pause button
+     */
     @Override
     public void createBounds() {
         if (button == SAVE) {

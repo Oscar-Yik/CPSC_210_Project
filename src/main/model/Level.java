@@ -12,8 +12,8 @@ public class Level {
     private Random rn;
 
     /*
-     * EFFECTS: Constructs a new level with random strength
-     * and health points from 1 to 3
+     * EFFECTS: Constructs a new level with random strength from 5 to 15
+     * and health points from 10 to 30
      */
     public Level() {
         rn = new Random();

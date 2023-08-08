@@ -7,6 +7,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/*
+ * Represents a class that imports all images from data folder to a usable array
+ */
 public class LoadImages {
 
     public static final String PLAYER_ATLAS = "Morgan_Sprite.png";
@@ -22,6 +25,10 @@ public class LoadImages {
     public static final String HEALTH = "Health.png";
     public static final String SAVE_LOAD = "Buttons.png";
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: returns array with image data from given file
+     */
     public static BufferedImage getSpriteAtlas(String filename) {
         BufferedImage img = null;
         try {
@@ -32,6 +39,10 @@ public class LoadImages {
         return img;
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: returns world image as an array
+     */
     public static BufferedImage[][] getLevelData() {
         BufferedImage img = getSpriteAtlas(FARM);
         BufferedImage[][] lvlData = new BufferedImage[img.getHeight()][img.getWidth()];

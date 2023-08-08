@@ -4,9 +4,15 @@ import javax.swing.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 
+/*
+ * Represents the game window which contains the game panel
+ */
 public class GameWindow {
     private JFrame jframe;
 
+    /*
+     * EFFECTS: constructs a game window with a game panel inside
+     */
     public GameWindow(GamePanel gamePanel) {
         jframe = new JFrame();
 
@@ -22,6 +28,10 @@ public class GameWindow {
 
             }
 
+            /*
+             * MODIFIES: this
+             * EFFECTS: stops game if window is not in focus
+             */
             @Override
             public void windowLostFocus(WindowEvent e) {
                 gamePanel.getGame().windowFocusLost();

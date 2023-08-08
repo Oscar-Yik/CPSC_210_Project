@@ -9,18 +9,27 @@ import java.awt.geom.Rectangle2D;
 
 import static ui.Constants.EnemyConstants.*;
 
+/*
+ * Represents a Cavalier enemy that the player can defeat
+ */
 public class Cavalier extends EnemyUI {
 
     private Rectangle2D.Float attackBox;
     private int attackBoxOffsetX;
-    //private boolean alive = true;
 
+    /*
+     * EFFECTS: creates a cavalier with a given x and y
+     */
     public Cavalier(float x, float y) {
         super(x, y, CAVALIER_WIDTH, CAVALIER_HEIGHT, CAVALIER);
         initHitbox(x,y,CAVALIER_WIDTH, CAVALIER_HEIGHT);
         initAttackbox();
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: initializes the cavalier's attackbox
+     */
     private void initAttackbox() {
         attackBox = new Rectangle2D.Float(posX - 20,posY,hitbox.width + 60,hitbox.height + 20);
         attackBoxOffsetX = 30;
@@ -42,29 +51,47 @@ public class Cavalier extends EnemyUI {
         this.attackBox.height = attackBoxHeight;
     }
 
+    /*
+     * EFFECTS: draws the cavalier's hitbox
+     */
     public void drawHitBox(Graphics g, int offsetX, int offsetY) {
         g.setColor(Color.PINK);
         g.drawRect((int)(hitbox.x - offsetX * 2.5), (int)(hitbox.y - offsetY * 2.5),
                 (int)hitbox.width, (int)hitbox.height);
     }
 
+    /*
+     * EFFECTS: draws the cavalier's attackbox
+     */
     public void drawAttackBox(Graphics g, int offsetX, int offsetY) {
         g.setColor(Color.RED);
         g.drawRect((int) (attackBox.x - offsetX * 2.5),(int) (attackBox.y - offsetY * 2.5),
                 (int) attackBox.width,(int) attackBox.height);
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: updates cavalier's data
+     */
     public void update(Player player, int offsetX, int offsetY) {
         updateMove(player, offsetX, offsetY);
         updateAnimationTick();
         updateAttackBox();
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: updates cavalier's attackbox
+     */
     private void updateAttackBox() {
         attackBox.x = hitbox.x - attackBoxOffsetX;
         attackBox.y = hitbox.y;
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: moves the cavalier
+     */
     public void updateMove(Player player, int offsetX, int offsetY) {
         switch (enemyState) {
             case IDLE:
@@ -82,6 +109,11 @@ public class Cavalier extends EnemyUI {
         }
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: checks if the cavalier is in attack or visual range
+     *          and moves the cavalier if needed
+     */
     private void checkRanges(Player player, int offsetX, int offsetY) {
         if (isPlayerInVisualRange(player, offsetX, offsetY)) {
             turnTowardsPlayer(player, offsetX, offsetY);
@@ -91,6 +123,10 @@ public class Cavalier extends EnemyUI {
         }
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: cavalier attacks the player at certain animation indexes
+     */
     private void updateAttack(Player player, int offsetX, int offsetY) {
         if (getEnemyIndex() == 0) {
             attackChecked = false;
@@ -100,16 +136,26 @@ public class Cavalier extends EnemyUI {
         }
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: updates health bar
+     */
     @Override
     public void updateHealthBar() {
         super.updateHealthBar();
     }
 
+    /*
+     * EFFECTS: draws health bar
+     */
     @Override
     public void drawUI(Graphics g, int offsetX, int offsetY) {
         super.drawUI(g, offsetX, offsetY);
     }
 
+    /*
+     * EFFECTS: returns cavalier as a JSONObject
+     */
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -125,6 +171,9 @@ public class Cavalier extends EnemyUI {
         return json;
     }
 
+    /*
+     * EFFECTS: parses cavalier's hitbox data into JSONObject
+     */
     private void toJsonHitbox(JSONObject json) {
         json.put("hitboxX", hitbox.x);
         json.put("hitboxY", hitbox.y);
@@ -132,6 +181,9 @@ public class Cavalier extends EnemyUI {
         json.put("hitboxH", hitbox.height);
     }
 
+    /*
+     * EFFECTS: parses cavalier's attackbox data into JSONObject
+     */
     private void toJsonAttackbox(JSONObject json) {
         json.put("attackboxX", attackBox.x);
         json.put("attackboxY", attackBox.y);
@@ -139,6 +191,9 @@ public class Cavalier extends EnemyUI {
         json.put("attackboxH", attackBox.height);
     }
 
+    /*
+     * EFFECTS: parses cavalier's UI data into JSONObject
+     */
     private void toJsonUI(JSONObject json) {
         json.put("enemyState", enemyState);
         json.put("aniTick", aniTick);
@@ -148,6 +203,9 @@ public class Cavalier extends EnemyUI {
         json.put("alive", alive);
     }
 
+    /*
+     * EFFECTS: returns a string representation of a Cavalier
+     */
     @Override
     public String toString() {
         return "Strength: " + getStrength() + " EnemyState: " + getEnemyState() + " MaxHealth: " + maxHealth

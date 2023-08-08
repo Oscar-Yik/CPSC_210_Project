@@ -10,6 +10,9 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 
+/*
+ * Represents a class that handles enemy object interactions with the game
+ */
 public class EnemyHandler {
 
     private Playing playing;
@@ -19,10 +22,17 @@ public class EnemyHandler {
     private int numCavaliers = 0;
     private int numAlive = 0;
 
+    /*
+     * EFFECTS: constructs an EnemyHandler with a playing object
+     */
     public EnemyHandler(Playing playing) {
         this.playing = playing;
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: adds enemies to the game
+     */
     public void addEnemies() {
         random = new Random();
         for (int i = 0; i < numCavaliers; i++) {
@@ -31,6 +41,10 @@ public class EnemyHandler {
         scaleEnemies();
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: scales the enemy's levels in the game
+     */
     private void scaleEnemies() {
         for (Cavalier c : cavaliers) {
             c.characterScale(playing.getPlayer());
@@ -38,6 +52,10 @@ public class EnemyHandler {
         }
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: updates all enemy data
+     */
     public void update(Player player, int offsetX, int offsetY, int numEnemies) {
         if (numEnemies > numCavaliers) {
             numCavaliers = numEnemies;
@@ -63,14 +81,24 @@ public class EnemyHandler {
         }
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: removes all enemies from the game
+     */
     private void removeEnemies() {
         cavaliers.clear();
     }
 
+    /*
+     * EFFECTS: draws enemies
+     */
     public void draw(Graphics g, int offsetX, int offsetY) {
         drawCavaliers(g, offsetX, offsetY);
     }
 
+    /*
+     * EFFECTS: draws each cavalier in the list
+     */
     private void drawCavaliers(Graphics g, int offsetX, int offsetY) {
 
         for (Cavalier c : cavaliers) {
@@ -87,6 +115,10 @@ public class EnemyHandler {
         }
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: imports enemy images from data folder to array
+     */
     private void loadEnemyImages() {
         cavalier = new BufferedImage[10][4];
         BufferedImage temp = LoadImages.getSpriteAtlas(LoadImages.CAVALIER_SPRITE);
@@ -105,6 +137,10 @@ public class EnemyHandler {
         }
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: checks if enemy is hit by player
+     */
     public void checkEnemyHit(Rectangle2D.Float attackBox, int offsetX, int offsetY, int strength) {
 
         Rectangle2D.Float actualAttackBox = new Rectangle2D.Float(attackBox.x - offsetX,
@@ -122,6 +158,10 @@ public class EnemyHandler {
         }
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: resets enemies in the list
+     */
     public void resetAllEnemies() {
         for (Cavalier c : cavaliers) {
             c.resetEnemy();
@@ -148,6 +188,10 @@ public class EnemyHandler {
         return cavaliers;
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: adds cavaliers to the game individually
+     */
     public void addCavalier(Cavalier cavalier) {
         cavaliers.add(cavalier);
     }

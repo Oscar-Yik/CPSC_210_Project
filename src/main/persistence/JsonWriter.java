@@ -1,14 +1,13 @@
 package persistence;
 
 import ui.Playing;
-import model.World;
 import org.json.JSONObject;
 
 
 import java.io.*;
 
-// Represents a writer that writes JSON representation of world to file
-// Citation(?):
+// Represents a writer that writes JSON representation of playing object to file
+// Citation:
 // This class is modeled after the JsonWriter class in the JsonSerializationDemo starter file
 public class JsonWriter {
     private static final int TAB = 4;
@@ -25,13 +24,6 @@ public class JsonWriter {
     // be opened for writing
     public void open() throws FileNotFoundException {
         writer = new PrintWriter(new File(destination));
-    }
-
-    // MODIFIES: this
-    // EFFECTS: writes JSON representation of world to file
-    public void write(World world) {
-        JSONObject json = world.toJson();
-        saveToFile(json.toString(TAB));
     }
 
     // MODIFIES: this

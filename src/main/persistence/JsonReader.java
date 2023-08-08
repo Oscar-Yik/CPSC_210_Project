@@ -13,9 +13,10 @@ import ui.EnemyHandler;
 import ui.Game;
 import ui.PlayerUI;
 
-// Represents a reader that reads world from JSON data stored in file
-// Citation(?):
+// Represents a reader that reads a playing object from JSON data stored in file
+// Citation:
 // This class is modeled after the JsonReader class in the JsonSerializationDemo starter file
+// Link:
 public class JsonReader {
     private String source;
 
@@ -24,15 +25,7 @@ public class JsonReader {
         this.source = source;
     }
 
-//    // EFFECTS: reads world from file and returns it;
-//    // throws IOException if an error occurs reading data from file
-//    public World read() throws IOException {
-//        String jsonData = readFile(source);
-//        JSONObject jsonObject = new JSONObject(jsonData);
-//        return parseWorld(jsonObject);
-//    }
-
-    // EFFECTS: reads world from file and returns it;
+    // EFFECTS: reads playing object from file and returns it;
     // throws IOException if an error occurs reading data from file
     public Playing read(Game game) throws IOException {
         String jsonData = readFile(source);
@@ -66,16 +59,8 @@ public class JsonReader {
         return playing;
     }
 
-//    // EFFECTS: parses world from JSON object and returns it
-//    private World parseWorld(JSONObject jsonObject) {
-//        World w = new World();
-//        addMonsters(w, jsonObject);
-//        addPlayer(w, jsonObject);
-//        return w;
-//    }
-
-    // MODIFIES: w
-    // EFFECTS: parses player from JSON object and adds them to world
+    // MODIFIES: playing
+    // EFFECTS: parses playerUI from JSON object
     private void addPlayer(Playing playing, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("player");
         for (Object json : jsonArray) {
@@ -84,18 +69,8 @@ public class JsonReader {
         }
     }
 
-//    // MODIFIES: w
-//    // EFFECTS: parses player from JSON object and adds them to world
-//    private void addPlayer(World w, JSONObject jsonObject) {
-//        JSONArray jsonArray = jsonObject.getJSONArray("player");
-//        for (Object json : jsonArray) {
-//            JSONObject nextPlayer = (JSONObject) json;
-//            addPlayerValues(w, nextPlayer);
-//        }
-//    }
-
-    // MODIFIES: w
-    // EFFECTS: parses player from JSON object and adds them to world
+    // MODIFIES: playing, player
+    // EFFECTS: parses playerUI values from JSON object and adds them to playing
     private void addPlayerValues(Playing playing, JSONObject jsonObject) {
         int x = jsonObject.getInt("x");
         int y = jsonObject.getInt("y");
@@ -116,22 +91,8 @@ public class JsonReader {
         playing.setPlayer(player);
     }
 
-//    // MODIFIES: w
-//    // EFFECTS: parses player from JSON object and adds them to world
-//    private void addPlayerValues(World w, JSONObject jsonObject) {
-//        int strength = jsonObject.getInt("Strength");
-//        int health = jsonObject.getInt("Health");
-//        String name = jsonObject.getString("Name");
-//        int lv = jsonObject.getInt("Level");
-//        int exp = jsonObject.getInt("Exp");
-//        String talent = jsonObject.getString("Talent");
-//        String weapon = jsonObject.getString("Weapon");
-//        int movementSpeed = jsonObject.getInt("Movement Speed");
-//        int range = jsonObject.getInt("Range");
-//        Player player = new Player(name, weapon, strength, health, exp, lv, talent, movementSpeed, range);
-//        w.addPlayer(player);
-//    }
-
+    // MODIFIES: player
+    // EFFECTS: parses hitbox data from JSON object and adds them to player
     private void addPlayerHitbox(PlayerUI player, JSONObject jsonObject) {
         player.setHitboxX(jsonObject.getInt("hitboxX"));
         player.setHitboxY(jsonObject.getInt("hitboxY"));
@@ -139,6 +100,8 @@ public class JsonReader {
         player.setHitboxHeight(jsonObject.getInt("hitboxH"));
     }
 
+    // MODIFIES: player
+    // EFFECTS: parses attackbox data from JSON object and adds them to player
     private void addPlayerAttackbox(PlayerUI player, JSONObject jsonObject) {
         player.setAttackBoxX(jsonObject.getInt("attackboxX"));
         player.setAttackBoxY(jsonObject.getInt("attackboxY"));
@@ -146,6 +109,8 @@ public class JsonReader {
         player.setAttackBoxHeight(jsonObject.getInt("attackboxH"));
     }
 
+    // MODIFIES: player
+    // EFFECTS: parses UI data from JSON object and adds them to player
     private void addPlayerUI(PlayerUI player, JSONObject jsonObject) {
         player.setAniIndex(jsonObject.getInt("aniIndex"));
         player.setAniTick(jsonObject.getInt("aniTick"));
@@ -157,8 +122,8 @@ public class JsonReader {
         player.setFlipW(jsonObject.getInt("flipW"));
     }
 
-    // MODIFIES: w
-    // EFFECTS: parses enemies from JSON object and adds them to world
+    // MODIFIES: playing, enemyHandler
+    // EFFECTS: parses enemyHandler from JSON object and adds them to playing
     private void addMonsters(Playing playing, JSONObject jsonObject, int numEnemies) {
         JSONArray jsonArray = jsonObject.getJSONArray("enemies");
         EnemyHandler enemyHandler = new EnemyHandler(playing);
@@ -170,18 +135,8 @@ public class JsonReader {
         playing.setEnemyHandler(enemyHandler);
     }
 
-//    // MODIFIES: w
-//    // EFFECTS: parses enemies from JSON object and adds them to world
-//    private void addMonsters(World w, JSONObject jsonObject) {
-//        JSONArray jsonArray = jsonObject.getJSONArray("enemies");
-//        for (Object json : jsonArray) {
-//            JSONObject nextMonster = (JSONObject) json;
-//            addMonster(w, nextMonster);
-//        }
-//    }
-
-    // MODIFIES: w
-    // EFFECTS: parses Enemy from JSON object and adds it to World
+    // MODIFIES: enemyHandler, cavalier
+    // EFFECTS: parses cavalier from JSON object and adds it to enemyHandler
     private void addMonster(EnemyHandler enemyHandler, Playing playing, JSONObject jsonObject) {
         int x = jsonObject.getInt("x");
         int y = jsonObject.getInt("y");
@@ -202,19 +157,8 @@ public class JsonReader {
         enemyHandler.addCavalier(cavalier);
     }
 
-//    // MODIFIES: w
-//    // EFFECTS: parses Enemy from JSON object and adds it to World
-//    private void addMonster(World w, JSONObject jsonObject) {
-//        int strength = jsonObject.getInt("Strength");
-//        int health = jsonObject.getInt("Health");
-//        Enemy enemy = new Enemy(strength,health);
-//        int lv = jsonObject.getInt("Level");
-//        for (int i = lv; i > 0; i--) {
-//            enemy.levelUpValueOnly();
-//        }
-//        w.addMonsters(enemy);
-//    }
-
+    // MODIFIES: cavalier
+    // EFFECTS: parses hitbox data from JSON object and adds them to cavalier
     private void addCavalierHitbox(Cavalier cavalier, JSONObject jsonObject) {
         cavalier.setHitboxX(jsonObject.getInt("hitboxX"));
         cavalier.setHitboxY(jsonObject.getInt("hitboxY"));
@@ -222,6 +166,8 @@ public class JsonReader {
         cavalier.setHitboxHeight(jsonObject.getInt("hitboxH"));
     }
 
+    // MODIFIES: cavalier
+    // EFFECTS: parses attackbox data from JSON object and adds them to cavalier
     private void addCavalierAttackbox(Cavalier cavalier, JSONObject jsonObject) {
         cavalier.setAttackBoxX(jsonObject.getInt("attackboxX"));
         cavalier.setAttackBoxY(jsonObject.getInt("attackboxY"));
@@ -229,6 +175,8 @@ public class JsonReader {
         cavalier.setAttackBoxHeight(jsonObject.getInt("attackboxH"));
     }
 
+    // MODIFIES: cavalier
+    // EFFECTS: parses UI data from JSON object and adds them to cavalier
     private void addCavalierUI(Cavalier cavalier, JSONObject jsonObject) {
         cavalier.setAniIndex(jsonObject.getInt("aniIndex"));
         cavalier.setAniTick(jsonObject.getInt("aniTick"));

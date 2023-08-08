@@ -4,6 +4,9 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
+/*
+ * Represents methods that should be included in game states
+ */
 public interface Statemethods {
 
     public void update();

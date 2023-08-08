@@ -1,26 +1,52 @@
 {
-    "ecosystem": "Forest",
-    "enemies": [
-        {
-            "Health": 5,
-            "Level": 2,
-            "Strength": 3
-        },
-        {
-            "Health": 2,
-            "Level": 2,
-            "Strength": 5
-        }
-    ],
+    "offsetX": 0,
+    "offsetY": 0,
+    "numAlive": 1,
+    "enemies": [{
+        "currentHealth": 210,
+        "hitboxY": 72,
+        "alive": true,
+        "hitboxX": 195,
+        "attackboxW": 226,
+        "enemyState": 2,
+        "attackboxX": 165,
+        "attackboxY": 72,
+        "walkDirX": 2,
+        "walkDirY": 3,
+        "aniIndex": 2,
+        "hitboxH": 166,
+        "x": 136,
+        "attackboxH": 186,
+        "y": 13,
+        "aniTick": 10,
+        "Level": 7,
+        "maxHealth": 210,
+        "hitboxW": 166,
+        "Strength": 80
+    }],
+    "numEnemies": 1,
     "player": [{
-        "Health": 1,
-        "Level": 1,
-        "Movement Speed": 0,
-        "Exp": 0,
-        "Talent": "Range",
-        "Range": 0,
-        "Strength": 3,
-        "Weapon": "Sword",
-        "Name": "Hero"
+        "currentHealth": 130,
+        "hitboxY": 336,
+        "hitboxX": 624,
+        "attackboxW": 200,
+        "attackboxX": 624,
+        "attackboxY": 346,
+        "right": false,
+        "down": false,
+        "aniIndex": 2,
+        "hitboxH": 135,
+        "left": false,
+        "x": 624,
+        "attackboxH": 200,
+        "y": 336,
+        "aniTick": 9,
+        "Level": 2,
+        "maxHealth": 130,
+        "hitboxW": 85.5,
+        "flipW": 1,
+        "up": false,
+        "flipX": 0,
+        "Strength": 75
     }]
 }

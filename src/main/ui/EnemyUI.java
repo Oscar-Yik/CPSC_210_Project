@@ -8,6 +8,9 @@ import java.awt.geom.Rectangle2D;
 import static ui.Constants.EnemyConstants.*;
 import static ui.Constants.Directions.*;
 
+/*
+ * Represents the enemy character's UI
+ */
 public abstract class EnemyUI extends Enemy {
 
     protected int aniIndex = 0;
@@ -23,6 +26,9 @@ public abstract class EnemyUI extends Enemy {
     protected boolean attackChecked;
     protected boolean alive = true;
 
+    /*
+     * EFFECTS: constructs an EnemyUI with a given position and type
+     */
     public EnemyUI(float x, float y, int width, int height, int enemyType) {
         super(x, y, width, height);
         this.enemyType = enemyType;
@@ -30,6 +36,10 @@ public abstract class EnemyUI extends Enemy {
 
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: turns the enemy towards the player
+     */
     protected void turnTowardsPlayer(Player player, int offsetX, int offsetY) {
         if (player.getHitbox().x  + (offsetX * 1.5) > hitbox.x) {
             walkDirX = EAST;
@@ -43,18 +53,28 @@ public abstract class EnemyUI extends Enemy {
         }
     }
 
+    /*
+     * EFFECTS: checks if player is in attack range
+     */
     protected boolean isPlayerInAttackRange(Player player, int offsetX, int offsetY) {
         int distanceX = Math.abs((int) (player.getHitbox().x - offsetX - (hitbox.x - offsetX * 2.5)));
         int distanceY = Math.abs((int) (player.getHitbox().y - offsetY - (hitbox.y - offsetY * 2.5)));
         return distanceX <= attackRange && distanceY <= attackRange;
     }
 
+    /*
+     * EFFECTS: checks if player is in visual range
+     */
     protected boolean isPlayerInVisualRange(Player player, int offsetX, int offsetY) {
         int distanceX = Math.abs((int) (player.getHitbox().x - offsetX - (hitbox.x - offsetX * 2.5)));
         int distanceY = Math.abs((int) (player.getHitbox().y - offsetY - (hitbox.y - offsetY * 2.5)));
         return distanceX <= visualRange || distanceY <= visualRange;
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: moves the enemy in the x direction
+     */
     protected void moveX() {
         float speedX = 0;
         if (walkDirX == WEST) {
@@ -69,6 +89,10 @@ public abstract class EnemyUI extends Enemy {
         changeWalkDirX();
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: moves the enemy in the y direction
+     */
     protected void moveY() {
         float speedY = 0;
         if (walkDirY == NORTH) {
@@ -83,16 +107,28 @@ public abstract class EnemyUI extends Enemy {
         changeWalkDirY();
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: changes enemyUI to a new animation state
+     */
     protected void newState(int enemyState) {
         this.enemyState = enemyState;
         aniTick = 0;
         aniIndex = 0;
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: lowers enemy health by certain amount
+     */
     public void hurt(int amount) {
         currentHealth -= amount;
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: increases animation tick and animation index for enemy animations
+     */
     protected void updateAnimationTick() {
         aniTick++;
         if (aniTick >= aniSpeed) {
@@ -107,6 +143,10 @@ public abstract class EnemyUI extends Enemy {
         }
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: changes enemy x direction
+     */
     protected void changeWalkDirX() {
         if (walkDirX == WEST) {
             walkDirX = EAST;
@@ -117,6 +157,10 @@ public abstract class EnemyUI extends Enemy {
         }
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: changes enemy y direction
+     */
     protected void changeWalkDirY() {
         if (walkDirY == NORTH) {
             walkDirY = SOUTH;
@@ -127,6 +171,9 @@ public abstract class EnemyUI extends Enemy {
         }
     }
 
+    /*
+     * EFFECTS: checks boundary of the world
+     */
     protected boolean canMoveHere(float x, float y, float width, float height) {
         float realX = x + width;
         float realY = y + height;
@@ -145,6 +192,10 @@ public abstract class EnemyUI extends Enemy {
         return enemyState;
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: checks if the enemy is hit by the player
+     */
     protected void checkEnemyHit(Rectangle2D.Float attackBox, Player player, int offsetX, int offsetY) {
         Rectangle2D.Float hitbox = player.getHitbox();
 
@@ -188,6 +239,10 @@ public abstract class EnemyUI extends Enemy {
         this.walkDirY = walkDirY;
     }
 
+    /*
+     * MODIFIES: this
+     * EFFECTS: resets all enemy booleans
+     */
     public void resetEnemy() {
         hitbox.x = posX;
         hitbox.y = posY;

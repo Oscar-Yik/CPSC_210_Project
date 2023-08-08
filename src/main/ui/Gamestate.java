@@ -1,5 +1,8 @@
 package ui;
 
+/*
+ * Represents the Gamestates as arbitrary constants
+ */
 public enum Gamestate {
     PLAYING, MENU, QUIT;
 
