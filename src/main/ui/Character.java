@@ -75,6 +75,14 @@ public class Character implements Writable {
         return this.level;
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
     public void setStrength(int str) {
         this.strength = str;
     }
@@ -159,6 +167,10 @@ public class Character implements Writable {
 
     public int getCurrentHealth() {
         return this.currentHealth;
+    }
+
+    public int getMaxHealth() {
+        return this.maxHealth;
     }
 
     /*

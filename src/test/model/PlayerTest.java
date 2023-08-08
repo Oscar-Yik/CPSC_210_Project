@@ -12,33 +12,28 @@ import static org.junit.jupiter.api.Assertions.*;
  * Tests the Player class
  */
 public class PlayerTest {
-//
-//    private Player testPlayer;
-//    private Player testPlayer2;
-//
-//    @BeforeEach
-//    void runBefore() {
-//        testPlayer = new Player("testPlayer");
-//        testPlayer2 = new Player("Hero", "Sword", 78, 34, 0,
-//        6, "Health", 0, 0);
-//        testEnemy = new Enemy();
-//    }
-//
-//    @Test
-//    void testConstructor() {
-//        assertEquals("testPlayer", testPlayer.getName());
-//        assertEquals(0, testPlayer.getExp());
-//        assertEquals(1, testPlayer.getLevel().size());
-//    }
-//
-//    @Test
-//    void testNewConstructor() {
-//        assertEquals("Hero", testPlayer2.getName());
-//        assertEquals(0, testPlayer2.getExp());
-//        assertEquals(6, testPlayer2.getLevel().size());
-//        assertEquals(78, testPlayer2.getStrength());
-//        assertEquals(0, testPlayer2.getMovementSpeed());
-//    }
+
+    private Player testPlayer;
+    private Player testPlayer2;
+
+    @BeforeEach
+    void runBefore() {
+        testPlayer = new Player(1,4);
+        testPlayer2 = new Player(5,7,8);
+    }
+
+    @Test
+    void testConstructor() {
+        assertEquals(1, testPlayer.getX());
+        assertEquals(4, testPlayer.getY());
+    }
+
+    @Test
+    void testNewConstructor() {
+        assertEquals(5, testPlayer2.getStrength());
+        assertEquals(7, testPlayer2.getMaxHealth());
+        assertEquals(8, testPlayer2.getLevel().size());
+    }
 
 //    @Test
 //    void testToString() {
