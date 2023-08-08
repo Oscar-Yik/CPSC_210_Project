@@ -1,8 +1,5 @@
 package ui;
 
-import inputs.KeyboardInputs;
-import inputs.MouseInputs;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -18,7 +15,7 @@ public class GamePanel extends JPanel {
         this.game = game;
         setPanelSize();
         addKeyListener(new KeyboardInputs(this));
-        System.out.println("Keyboard Connected");
+        //System.out.println("Keyboard Connected");
         addMouseListener(mouseInputs);
         addMouseMotionListener(mouseInputs);
     }
@@ -26,7 +23,7 @@ public class GamePanel extends JPanel {
     private void setPanelSize() {
         Dimension size = new Dimension(GAME_WIDTH,GAME_HEIGHT);
         setPreferredSize(size);
-        System.out.println("size: " + GAME_WIDTH + " : " + GAME_HEIGHT);
+        //System.out.println("size: " + GAME_WIDTH + " : " + GAME_HEIGHT);
     }
 
     @Override

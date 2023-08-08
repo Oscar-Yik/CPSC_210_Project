@@ -1,8 +1,5 @@
 package ui;
 
-import gamestates.Gamestate;
-import gamestates.Playing;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 

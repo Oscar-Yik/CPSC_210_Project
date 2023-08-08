@@ -1,7 +1,5 @@
 package ui;
 
-import utilz.LoadImages;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 

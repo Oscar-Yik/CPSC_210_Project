@@ -1,4 +1,4 @@
-package gamestates;
+package ui;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;

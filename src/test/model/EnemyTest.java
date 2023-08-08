@@ -19,7 +19,7 @@ public class EnemyTest {
     void runBefore() {
         testEnemy = new Enemy();
         testEnemy2 = new Enemy(5,8);
-        testPlayer = new Player("testPlayer");
+        testPlayer = new Player();
     }
 
     @Test

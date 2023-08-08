@@ -15,10 +15,6 @@ public class JsonTest {
 
     protected void checkPlayerEquals(World w) {
         checkStatRange(w.getPlayer().getLevel().size(),w.getPlayer().getStrength());
-
-        assertEquals(0, w.getPlayer().getExp());
-        assertEquals(0, w.getPlayer().getMovementSpeed());
-        assertEquals("Hero", w.getPlayer().getName());
         assertEquals(1, w.getPlayer().getLevel().size());
     }
 

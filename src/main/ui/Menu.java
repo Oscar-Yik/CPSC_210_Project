@@ -1,12 +1,8 @@
-package gamestates;
+package ui;
 
-import ui.Game;
-import gui.MenuButton;
-import utilz.LoadImages;
-
-import static utilz.Constants.UI.Buttons.*;
-import static utilz.Constants.UI.PauseButtons.*;
-import static utilz.Constants.UI.SaveLoadButtons.*;
+import static ui.Constants.UI.Buttons.*;
+import static ui.Constants.UI.PauseButtons.*;
+import static ui.Constants.UI.SaveLoadButtons.*;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;

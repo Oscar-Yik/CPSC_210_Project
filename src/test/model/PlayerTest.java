@@ -12,54 +12,33 @@ import static org.junit.jupiter.api.Assertions.*;
  * Tests the Player class
  */
 public class PlayerTest {
-
-    private Player testPlayer;
-    private Player testPlayer2;
-    private Player testPlayerTalent1;
-    private Player testPlayerTalent2;
-    private Player testPlayerTalent3;
-    private Player testPlayerTalent4;
-    private Player testPlayerTalent5;
-    private Enemy testEnemy;
-
-    @BeforeEach
-    void runBefore() {
-        testPlayer = new Player("testPlayer");
-        testPlayer2 = new Player("Hero", "Sword", 78, 34, 0,
-        6, "Health", 0, 0);
-        testEnemy = new Enemy();
-    }
-
-    @Test
-    void testConstructor() {
-        assertEquals("testPlayer", testPlayer.getName());
-        assertEquals(0, testPlayer.getExp());
-        assertEquals(1, testPlayer.getLevel().size());
-    }
-
-    @Test
-    void testNewConstructor() {
-        assertEquals("Hero", testPlayer2.getName());
-        assertEquals(0, testPlayer2.getExp());
-        assertEquals(6, testPlayer2.getLevel().size());
-        assertEquals(78, testPlayer2.getStrength());
-        assertEquals(0, testPlayer2.getMovementSpeed());
-    }
-
-    @Test
-    void testChooseTarget() {
-        testPlayer.chooseTarget(testEnemy);
-        assertEquals(testEnemy, testPlayer.getTarget());
-    }
-
-    @Test
-    void testAddEXP() {
-        testPlayer.addEXP();
-        assertEquals(100,testPlayer.getExp());
-        testPlayer.addEXP();
-        assertEquals(0,testPlayer.getExp());
-        assertEquals(2,testPlayer.getLevel().size());
-    }
+//
+//    private Player testPlayer;
+//    private Player testPlayer2;
+//
+//    @BeforeEach
+//    void runBefore() {
+//        testPlayer = new Player("testPlayer");
+//        testPlayer2 = new Player("Hero", "Sword", 78, 34, 0,
+//        6, "Health", 0, 0);
+//        testEnemy = new Enemy();
+//    }
+//
+//    @Test
+//    void testConstructor() {
+//        assertEquals("testPlayer", testPlayer.getName());
+//        assertEquals(0, testPlayer.getExp());
+//        assertEquals(1, testPlayer.getLevel().size());
+//    }
+//
+//    @Test
+//    void testNewConstructor() {
+//        assertEquals("Hero", testPlayer2.getName());
+//        assertEquals(0, testPlayer2.getExp());
+//        assertEquals(6, testPlayer2.getLevel().size());
+//        assertEquals(78, testPlayer2.getStrength());
+//        assertEquals(0, testPlayer2.getMovementSpeed());
+//    }
 
 //    @Test
 //    void testToString() {

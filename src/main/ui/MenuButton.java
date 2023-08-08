@@ -1,11 +1,9 @@
-package gui;
+package ui;
 
-import gamestates.Gamestate;
-import utilz.LoadImages;
-import static utilz.Constants.UI.Buttons.*;
-import static utilz.Constants.UI.PauseButtons.*;
-import static utilz.Constants.UI.PauseButtons.PAUSE_BUTTON_SIZE;
-import static utilz.Constants.UI.SaveLoadButtons.*;
+import static ui.Constants.UI.Buttons.*;
+import static ui.Constants.UI.PauseButtons.*;
+import static ui.Constants.UI.PauseButtons.PAUSE_BUTTON_SIZE;
+import static ui.Constants.UI.SaveLoadButtons.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

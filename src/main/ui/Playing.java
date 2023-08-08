@@ -1,20 +1,16 @@
-package gamestates;
+package ui;
 
-import model.Cavalier;
 import model.Enemy;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
-import ui.*;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 
-import persistence.JsonReader;
 import persistence.JsonWriter;
 
 public class Playing extends State implements Statemethods, Writable {

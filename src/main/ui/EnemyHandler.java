@@ -1,11 +1,8 @@
 package ui;
 
-import gamestates.Playing;
-import model.Cavalier;
-import model.Enemy;
 import model.Player;
-import utilz.LoadImages;
-import static utilz.Constants.EnemyConstants.*;
+
+import static ui.Constants.EnemyConstants.*;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
@@ -83,9 +80,9 @@ public class EnemyHandler {
             if (c.isAlive()) {
                 g.drawImage(cavalier[c.getEnemyState()][c.getEnemyIndex()], (int) (c.getHitbox().x - (offsetX * 2.5)),
                         (int) (c.getHitbox().y - (offsetY * 2.5)), CAVALIER_WIDTH, CAVALIER_HEIGHT, null);
-                c.drawHitBox(g,offsetX,offsetY);
+                //c.drawHitBox(g,offsetX,offsetY);
                 c.drawUI(g, (int) (offsetX * 2.5), (int)(offsetY * 2.5));
-                c.drawAttackBox(g, offsetX, offsetY);
+                //c.drawAttackBox(g, offsetX, offsetY);
             }
         }
     }

@@ -1,9 +1,10 @@
-package model;
+package ui;
 
+import model.Level;
 import persistence.Writable;
 
 import org.json.JSONObject;
-import utilz.LoadImages;
+import ui.LoadImages;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
@@ -188,7 +189,6 @@ public class Character implements Writable {
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        //json.put("name", name);
         json.put("Level", this.level.size());
         json.put("Strength", this.strength);
         json.put("Health", this.maxHealth);

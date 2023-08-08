@@ -1,6 +1,6 @@
 package model;
 
-import java.util.List;
+import ui.Character;
 
 /*
  * Represents an enemy that the player can defeat in the game
@@ -23,7 +23,6 @@ public class Enemy extends Character {
      */
     public Enemy() {
         super();
-        //damageMultiplier = 2;
         this.maxHealth = 70;
         levelUp();
         levelUp();
@@ -38,7 +37,6 @@ public class Enemy extends Character {
         super();
         this.strength = strength;
         this.maxHealth = health;
-        //damageMultiplier = 2;
     }
 
     /*

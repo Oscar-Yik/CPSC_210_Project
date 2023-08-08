@@ -1,13 +1,8 @@
 package ui;
 
-import gamestates.Gamestate;
-import gamestates.Playing;
-import gui.PauseButton;
-import utilz.LoadImages;
-
 import static java.awt.Font.BOLD;
-import static utilz.Constants.UI.PauseButtons.*;
-import static utilz.Constants.UI.SaveLoadButtons.*;
+import static ui.Constants.UI.PauseButtons.*;
+import static ui.Constants.UI.SaveLoadButtons.*;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;

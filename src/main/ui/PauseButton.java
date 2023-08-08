@@ -1,8 +1,7 @@
-package gui;
+package ui;
 
-import utilz.LoadImages;
-import static utilz.Constants.UI.PauseButtons.*;
-import static utilz.Constants.UI.SaveLoadButtons.*;
+import static ui.Constants.UI.PauseButtons.*;
+import static ui.Constants.UI.SaveLoadButtons.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

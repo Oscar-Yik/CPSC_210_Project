@@ -1,8 +1,5 @@
 package ui;
 
-import gamestates.Gamestate;
-import gamestates.Playing;
-import gamestates.Menu;
 import persistence.JsonReader;
 
 import java.awt.*;
@@ -20,13 +17,8 @@ public class Game implements Runnable {
     private int numEnemies = 1;
 
     private static final String JSON_STORE = "./data/world.json";
-    public static final int TILES_DEFAULT_SIZE = 32;
-    public static final float SCALE = 1.5f;
-    public static final int TILES_IN_WIDTH = 26;
-    public static final int TILES_IN_HEIGHT = 14;
-    public static final int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
-    public static final int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH;
-    public static final int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
+    public static final int GAME_WIDTH = 1248;
+    public static final int GAME_HEIGHT = 672;
 
     public Game() {
         initClasses();
@@ -119,7 +111,7 @@ public class Game implements Runnable {
 
             if (System.currentTimeMillis() - lastCheck >= 1000) {
                 lastCheck = System.currentTimeMillis();
-                System.out.println("FPS " + frames + " | UPS " + updates);
+                //System.out.println("FPS " + frames + " | UPS " + updates);
                 frames = 0;
                 updates = 0;
             }

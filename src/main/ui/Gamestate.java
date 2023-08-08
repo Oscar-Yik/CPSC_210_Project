@@ -1,4 +1,4 @@
-package gamestates;
+package ui;
 
 public enum Gamestate {
     PLAYING, MENU, QUIT;

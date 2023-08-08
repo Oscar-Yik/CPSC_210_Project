@@ -1,6 +1,6 @@
 package persistence;
 
-import gamestates.Playing;
+import ui.Playing;
 import model.World;
 import org.json.JSONObject;
 

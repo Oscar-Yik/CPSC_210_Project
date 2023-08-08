@@ -1,15 +1,13 @@
 package ui;
 
-import gamestates.Playing;
 import model.Player;
 import org.json.JSONObject;
-import utilz.LoadImages;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
-import static utilz.Constants.PlayerConstants.*;
+import static ui.Constants.PlayerConstants.*;
 
 public class PlayerUI extends Player {
 
@@ -86,8 +84,8 @@ public class PlayerUI extends Player {
     public void render(Graphics g, int offsetX, int offsetY) {
         g.drawImage(animations[playerAction][aniIndex], (int) (hitbox.x - drawOffsetX) - offsetX + flipX,
                 (int) (hitbox.y - drawOffsetY) - offsetY, 144 * flipW, 144, null);
-        drawHitBox(g, offsetX, offsetY);
-        drawAttackBox(g, offsetX, offsetY);
+        //drawHitBox(g, offsetX, offsetY);
+        //drawAttackBox(g, offsetX, offsetY);
         drawUI(g, offsetX, offsetY);
     }
 

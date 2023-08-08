@@ -1,12 +1,13 @@
-package model;
+package ui;
 
+import model.Player;
 import org.json.JSONObject;
 import ui.EnemyUI;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
-import static utilz.Constants.EnemyConstants.*;
+import static ui.Constants.EnemyConstants.*;
 
 public class Cavalier extends EnemyUI {
 
@@ -40,7 +41,6 @@ public class Cavalier extends EnemyUI {
     public void setAttackBoxHeight(int attackBoxHeight) {
         this.attackBox.height = attackBoxHeight;
     }
-
 
     public void drawHitBox(Graphics g, int offsetX, int offsetY) {
         g.setColor(Color.PINK);

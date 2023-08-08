@@ -1,7 +1,4 @@
-package gamestates;
-
-import gui.MenuButton;
-import ui.Game;
+package ui;
 
 import java.awt.event.MouseEvent;
 

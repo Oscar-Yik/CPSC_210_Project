@@ -321,11 +321,11 @@ public class GameApp {
     // MODIFIES: this
     // EFFECTS: loads world from file
     private void loadWorld() {
-        try {
-            world = jsonReader.read();
-            System.out.println("Loaded from " + JSON_STORE);
-        } catch (IOException e) {
-            System.out.println("Unable to read from file: " + JSON_STORE);
-        }
+//        try {
+//            world = jsonReader.read();
+//            System.out.println("Loaded from " + JSON_STORE);
+//        } catch (IOException e) {
+//            System.out.println("Unable to read from file: " + JSON_STORE);
+//        }
     }
 }

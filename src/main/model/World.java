@@ -30,7 +30,7 @@ public class World implements Writable {
      */
     public World(String playerName) {
         monsters = new ArrayList<Enemy>();
-        player = new Player(playerName);
+        player = new Player();
         ecosystem = "Forest";
     }
 

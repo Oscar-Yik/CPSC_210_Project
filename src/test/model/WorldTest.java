@@ -20,14 +20,13 @@ public class WorldTest {
     void runBefore() {
        testWorld = new World("testWorld");
        testEmptyWorld = new World();
-       testPlayer = new Player("testPlayer");
+       testPlayer = new Player();
        testEnemy = new Enemy();
     }
 
     @Test
     void testConstructor() {
         assertEquals(0, testWorld.getMonsters().size());
-        assertEquals("testWorld",testWorld.getPlayer().getName());
         assertEquals("Forest", testWorld.getEcosystem());
     }
 

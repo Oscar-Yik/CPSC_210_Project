@@ -1,4 +1,4 @@
-package utilz;
+package ui;
 
 public class Constants {
 

@@ -5,8 +5,8 @@ import model.Player;
 
 import java.awt.geom.Rectangle2D;
 
-import static utilz.Constants.EnemyConstants.*;
-import static utilz.Constants.Directions.*;
+import static ui.Constants.EnemyConstants.*;
+import static ui.Constants.Directions.*;
 
 public abstract class EnemyUI extends Enemy {
 
