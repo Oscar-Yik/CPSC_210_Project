@@ -17,8 +17,8 @@ public class Level {
      */
     public Level() {
         rn = new Random();
-        strengthPoints = rn.nextInt(3) + 1;
-        healthPoints = rn.nextInt(3) + 1;
+        strengthPoints = (rn.nextInt(3) + 1) * 5;
+        healthPoints = (rn.nextInt(3) + 1) * 10;
     }
 
     public int getStrengthPoints() {

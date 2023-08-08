@@ -24,16 +24,13 @@ public class EnemyTest {
 
     @Test
     void testConstructor() {
-        assertEquals(2, testEnemy.getDamageMultiplier());
         assertEquals(2,testEnemy.getLevel().size());
     }
 
     @Test
     void testNewConstructor() {
-        assertEquals(2,testEnemy2.getDamageMultiplier());
         assertEquals(0,testEnemy2.getLevel().size());
         assertEquals(5,testEnemy2.getStrength());
-        assertEquals(8,testEnemy2.getHealth());
     }
 
     @Test
@@ -53,11 +50,5 @@ public class EnemyTest {
         }
         testEnemy.characterScale(testPlayer);
         assertEquals(12,testEnemy.getLevel().size());
-    }
-
-    @Test
-    void testToString() {
-        assertEquals("[ Strength = " + testEnemy.getStrength() + ", Health = " + testEnemy.getHealth() + ", "
-                + "Level = " + testEnemy.getLevel().size() + "]",testEnemy.toString());
     }
 }

@@ -3,6 +3,11 @@ package model;
 import persistence.Writable;
 
 import org.json.JSONObject;
+import utilz.LoadImages;
+
+import java.awt.*;
+import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,61 +16,148 @@ import java.util.List;
  */
 public class Character implements Writable {
 
-    protected int strength;
-    protected int health;
+    protected int strength = 10;
     protected List<Level> level;
-    protected int damageMultiplier;
+    protected float posX;
+    protected float posY;
+    protected int width;
+    protected int height;
+    protected Rectangle2D.Float hitbox;
+
+    // Status Bar UI
+    private BufferedImage statusBarImg;
+    private BufferedImage statusBarSubImage;
+    private BufferedImage healthImg;
+    private BufferedImage healthSubImage;
+    private int statusBarWidth = 135;
+    private int statusBarHeight = 29;
+
+    private int healthBarWidth = 125;
+    private int healthBarHeight = 10;
+
+    protected int maxHealth = 100;
+    protected int currentHealth = maxHealth;
+    private int healthWidth = healthBarWidth;
 
     /*
      * EFFECTS: Constructs a new character with no levels
      */
+    public Character(float x, float y, int width, int height) {
+        this.posX = x;
+        this.posY = y;
+        this.width = width;
+        this.height = height;
+
+        statusBarImg = LoadImages.getSpriteAtlas(LoadImages.HEALTH_BAR);
+        healthImg = LoadImages.getSpriteAtlas(LoadImages.HEALTH);
+
+        level = new ArrayList<>();
+    }
+
     public Character() {
         level = new ArrayList<>();
+    }
+
+    public float getX() {
+        return this.posX;
+    }
+
+    public float getY() {
+        return this.posY;
     }
 
     public int getStrength() {
         return this.strength;
     }
 
-    public int getHealth() {
-        return this.health;
-    }
-
     public List<Level> getLevel() {
         return this.level;
     }
 
-    public int getDamageMultiplier() {
-        return this.damageMultiplier;
-    }
-
-    public int setStrength(int str) {
+    public void setStrength(int str) {
         this.strength = str;
-        return this.strength;
     }
 
-    public int setHealth(int health) {
-        this.health = health;
-        return this.health;
+    public void setCurrentHealth() {
+        this.currentHealth = maxHealth;
     }
 
-    public int setDamageMultiplier(int dm) {
-        this.damageMultiplier = dm;
-        return this.damageMultiplier;
+    public void setCurrentHealth(int currentHealth) {
+        this.currentHealth = currentHealth;
+        System.out.println(currentHealth);
+    }
+
+    public void setHitboxX(float x) {
+        this.hitbox.x = x;
+    }
+
+    public void setHitboxY(float y) {
+        this.hitbox.y = y;
+    }
+
+    public void setHitboxWidth(float width) {
+        this.hitbox.width = width;
+    }
+
+    public void setHitboxHeight(float height) {
+        this.hitbox.height = height;
+    }
+
+    public void setMaxHealth(int maxHealth) {
+        this.maxHealth = maxHealth;
+        System.out.println(maxHealth);
+    }
+
+    /*
+     * EFFECTS: Shows the hitbox for debugging
+     */
+    protected void drawHitBox(Graphics g, int offsetX, int offsetY) {
+        g.setColor(Color.PINK);
+        g.drawRect((int)hitbox.x - offsetX, (int)hitbox.y - offsetY, (int)hitbox.width, (int)hitbox.height);
     }
 
     /*
      * MODIFIES: this
-     * EFFECTS: Character loses health equal to the strength times its
-     * damageMultiplier only up to
+     * EFFECTS: Initialize character's hit box
      */
-    public void takeDamage(int strength) {
-        if (this.health > 0) {
-            this.health -= strength * this.damageMultiplier;
-            if (this.health < 0) {
-                this.health = 0;
-            }
+    protected void initHitbox(float x, float y, float width, float height) {
+        hitbox = new Rectangle2D.Float(x, y, width, height);
+    }
+
+    public Rectangle2D.Float getHitbox() {
+        return this.hitbox;
+    }
+
+    protected void updateHealthBar() {
+        float healthRatio = (currentHealth / (float) maxHealth);
+        healthWidth = (int) (healthRatio * healthBarWidth);
+        if (healthRatio <= 0) {
+            healthRatio = 0;
         }
+        healthSubImage = healthImg.getSubimage(11,18, (int) (332 * healthRatio) + 1, healthBarHeight);
+    }
+
+    protected void drawUI(Graphics g, int offsetX, int offsetY) {
+        statusBarSubImage = statusBarImg.getSubimage(14,20, 351, 49);
+
+        g.drawImage(statusBarSubImage,(int) hitbox.x - offsetX, (int) hitbox.y - 25 - offsetY,
+                statusBarWidth,statusBarHeight, null);
+        g.drawImage(healthSubImage, (int) hitbox.x + 4 - offsetX, (int) hitbox.y - 17 - offsetY,
+                healthWidth,healthBarHeight,null);
+    }
+
+    public void changeHealth(int strength) {
+        currentHealth += strength;
+
+        if (currentHealth <= 0) {
+            currentHealth = 0;
+        } else if (currentHealth >= maxHealth) {
+            currentHealth = maxHealth;
+        }
+    }
+
+    public int getCurrentHealth() {
+        return this.currentHealth;
     }
 
     /*
@@ -76,7 +168,7 @@ public class Character implements Writable {
     public void levelUp() {
         Level lv = new Level();
         strength += lv.getStrengthPoints();
-        health += lv.getHealthPoints();
+        maxHealth += lv.getHealthPoints();
         level.add(lv);
     }
 
@@ -91,13 +183,6 @@ public class Character implements Writable {
     }
 
     /*
-     * EFFECTS: returns damage taken from an attack
-     */
-    public int getDamage() {
-        return this.strength * this.damageMultiplier;
-    }
-
-    /*
      * EFFECTS: returns this character as a JSONObject
      */
     @Override
@@ -106,7 +191,7 @@ public class Character implements Writable {
         //json.put("name", name);
         json.put("Level", this.level.size());
         json.put("Strength", this.strength);
-        json.put("Health", this.health);
+        json.put("Health", this.maxHealth);
         return json;
     }
 }

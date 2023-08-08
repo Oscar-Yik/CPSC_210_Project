@@ -1,5 +1,6 @@
 package persistence;
 
+import gamestates.Playing;
 import model.World;
 import org.json.JSONObject;
 
@@ -30,6 +31,13 @@ public class JsonWriter {
     // EFFECTS: writes JSON representation of world to file
     public void write(World world) {
         JSONObject json = world.toJson();
+        saveToFile(json.toString(TAB));
+    }
+
+    // MODIFIES: this
+    // EFFECTS: writes JSON representation of playing to file
+    public void write(Playing playing) {
+        JSONObject json = playing.toJson();
         saveToFile(json.toString(TAB));
     }
 

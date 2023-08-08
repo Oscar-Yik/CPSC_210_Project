@@ -2,14 +2,11 @@
     "ecosystem": "Forest",
     "enemies": [],
     "player": [{
-        "Health": 2,
+        "Health": 120,
         "Level": 1,
         "Movement Speed": 0,
         "Exp": 0,
-        "Talent": "Strength",
-        "Range": 0,
-        "Strength": 1,
-        "Weapon": "Sword",
+        "Strength": 20,
         "Name": "Hero"
     }]
 }

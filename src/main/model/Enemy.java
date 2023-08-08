@@ -7,15 +7,27 @@ import java.util.List;
  */
 public class Enemy extends Character {
 
+    public Enemy(float x, float y, int width, int height) {
+        super(x,y,width,height);
+        initHitbox(x,y,width,height);
+        this.maxHealth = 70;
+        levelUp();
+        levelUp();
+        currentHealth = maxHealth;
+
+    }
+
     /*
      * EFFECTS: Constructs an Enemy object with damageMultiplier = 2
      * and 2 levels
      */
     public Enemy() {
         super();
-        damageMultiplier = 2;
+        //damageMultiplier = 2;
+        this.maxHealth = 70;
         levelUp();
         levelUp();
+        currentHealth = maxHealth;
     }
 
     /*
@@ -25,8 +37,8 @@ public class Enemy extends Character {
     public Enemy(int strength, int health) {
         super();
         this.strength = strength;
-        this.health = health;
-        damageMultiplier = 2;
+        this.maxHealth = health;
+        //damageMultiplier = 2;
     }
 
     /*
@@ -48,7 +60,7 @@ public class Enemy extends Character {
      */
     @Override
     public String toString() {
-        return "[ Strength = " + strength + ", Health = " + health + ", "
+        return "[ Strength = " + strength + ", Health = " + maxHealth + ", "
                 + "Level = " + level.size() + "]";
     }
 

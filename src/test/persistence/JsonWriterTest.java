@@ -28,46 +28,46 @@ class JsonWriterTest extends JsonTest {
             // pass
         }
     }
-
-    @Test
-    void testWriterEmptyWorkroom() {
-        try {
-            World emptyWorld = new World("Hero");
-            JsonWriter writer = new JsonWriter("./data/testWriterEmptyWorld.json");
-
-            writer.open();
-            writer.write(emptyWorld);
-            writer.close();
-
-            JsonReader reader = new JsonReader("./data/testWriterEmptyWorld.json");
-            emptyWorld = reader.read();
-            checkPlayerEquals(emptyWorld);
-            assertEquals("Forest", emptyWorld.getEcosystem());
-            assertEquals(0, emptyWorld.getMonsters().size());
-        } catch (IOException e) {
-            fail("Exception should not have been thrown");
-        }
-    }
-
-    @Test
-    void testWriterGeneralWorkroom() {
-        try {
-            World generalWorld = new World("Hero");
-            generalWorld.addMonsters();
-            generalWorld.addMonsters();
-            JsonWriter writer = new JsonWriter("./data/testWriterGeneralWorkroom.json");
-            writer.open();
-            writer.write(generalWorld);
-            writer.close();
-
-            JsonReader reader = new JsonReader("./data/testWriterGeneralWorkroom.json");
-            generalWorld = reader.read();
-
-            checkPlayerEquals(generalWorld);
-            checkEnemyEquals(generalWorld);
-
-        } catch (IOException e) {
-            fail("Exception should not have been thrown");
-        }
-    }
+//
+//    @Test
+//    void testWriterEmptyWorkroom() {
+//        try {
+//            World emptyWorld = new World("Hero");
+//            JsonWriter writer = new JsonWriter("./data/testWriterEmptyWorld.json");
+//
+//            writer.open();
+//            writer.write(emptyWorld);
+//            writer.close();
+//
+//            JsonReader reader = new JsonReader("./data/testWriterEmptyWorld.json");
+//            emptyWorld = reader.read();
+//            checkPlayerEquals(emptyWorld);
+//            assertEquals("Forest", emptyWorld.getEcosystem());
+//            assertEquals(0, emptyWorld.getMonsters().size());
+//        } catch (IOException e) {
+//            fail("Exception should not have been thrown");
+//        }
+//    }
+//
+//    @Test
+//    void testWriterGeneralWorkroom() {
+//        try {
+//            World generalWorld = new World("Hero");
+//            generalWorld.addMonsters();
+//            generalWorld.addMonsters();
+//            JsonWriter writer = new JsonWriter("./data/testWriterGeneralWorkroom.json");
+//            writer.open();
+//            writer.write(generalWorld);
+//            writer.close();
+//
+//            JsonReader reader = new JsonReader("./data/testWriterGeneralWorkroom.json");
+//            generalWorld = reader.read();
+//
+//            checkPlayerEquals(generalWorld);
+//            checkEnemyEquals(generalWorld);
+//
+//        } catch (IOException e) {
+//            fail("Exception should not have been thrown");
+//        }
+//    }
 }

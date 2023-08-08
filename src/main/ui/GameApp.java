@@ -202,9 +202,9 @@ public class GameApp {
      */
     private boolean noMoreMonsters() {
         for (Enemy enemy: world.getMonsters()) {
-            if (enemy.getHealth() != 0) {
-                return false;
-            }
+//            if (enemy.getHealth() != 0) {
+//                return false;
+//            }
         }
         return true;
     }
@@ -216,10 +216,10 @@ public class GameApp {
         System.out.println("\nWhich monster do you want to attack?:");
         int count = 1;
         for (Enemy enemy: world.getMonsters()) {
-            if (enemy.getHealth() != 0) {
-                System.out.println("\tMonster" + count);
-                System.out.println("\t\t" + enemy);
-            }
+//            if (enemy.getHealth() != 0) {
+//                System.out.println("\tMonster" + count);
+//                System.out.println("\t\t" + enemy);
+//            }
             count++;
         }
     }
@@ -233,16 +233,16 @@ public class GameApp {
     private void battle(int monsterIndex) {
         Enemy targetMonster = world.getMonsters().get(monsterIndex);
         Player player = world.getPlayer();
-        targetMonster.takeDamage(player.getStrength());
-        if (targetMonster.getHealth() == 0) {
-            world.getMonsters().remove(monsterIndex);
-            int iniLevel = player.getLevel().size();
-            player.addEXP();
-            if (player.getLevel().size() > iniLevel) {
-                System.out.println("You Leveled Up!");
-            }
-        }
-        System.out.println("Monster " + (monsterIndex + 1) + " Took " + player.getDamage() + " Damage!");
+//        targetMonster.takeDamage(player.getStrength());
+//        if (targetMonster.getHealth() == 0) {
+//            world.getMonsters().remove(monsterIndex);
+//            int iniLevel = player.getLevel().size();
+//            player.addEXP();
+//            if (player.getLevel().size() > iniLevel) {
+//                System.out.println("You Leveled Up!");
+//            }
+//        }
+        //System.out.println("Monster " + (monsterIndex + 1) + " Took " + player.getDamage() + " Damage!");
     }
 
     /*
