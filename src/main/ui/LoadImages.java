@@ -9,6 +9,17 @@ import java.io.IOException;
 
 /*
  * Represents a class that imports all images from data folder to a usable array
+ * Art citations:
+ * Blue_Cavalier_Sprite: https://www.spriters-resource.com/3ds/fireemblemawakening/sheet/64153/
+ * Buttons: https://bdragon1727.itch.io/basic-pixel-gui-and-buttons-pack-2
+ * Empty Health Bar + Health + Pause_Components: https://mounirtohami.itch.io/pixel-art-gui-elements
+ * farm: https://pingudroid.files.wordpress.com/2022/03/farm.png?w=1024
+ * Menu_Background_2: https://pro2-bar-s3-cdn-cf5.myportfolio.com/6eeae5a2e91d6f4cf1067e6935759146/69e4cc7c-29a2-472c-
+ * b35f-a899ac5ef803_rw_1920.jpg?h=c742ebc7dea9104a66476894ad713745
+ * Morgan_Sprite: https://www.spriters-resource.com/3ds/fireemblemawakening/sheet/64160/
+ * Pause_Background: https://art.pixilart.com/3a8a19a3fff549b.png
+ * Pause_Buttons: https://bdragon1727.itch.io/basic-pixel-gui-and-buttons-pack-1
+ * UI_BUttons: https://bdragon1727.itch.io/platformer-ui-buttons
  */
 public class LoadImages {
 
