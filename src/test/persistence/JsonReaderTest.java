@@ -1,15 +1,11 @@
 package persistence;
 
-import model.Enemy;
-import model.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ui.Game;
-import ui.Playing;
+import model.Game;
+import model.Playing;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -54,11 +50,8 @@ class JsonReaderTest extends JsonTest {
 //        JsonReader reader = new JsonReader("./data/testReaderGeneralWorld.json");
 //        try {
 //            Playing playing = reader.read(game);
-//            Player testPlayer = new Player("Hero", "Sword",
-//                    3, 1, 0, 1, "Range",
-//                    0, 0);
-//            checkPlayerEquals(w);
-//            checkEnemyEquals(w);
+//            checkPlayerEquals(playing);
+//            checkEnemiesEquals(playing);
 //        } catch (IOException e) {
 //            fail("Couldn't read from file");
 //        }

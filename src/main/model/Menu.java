@@ -1,4 +1,6 @@
-package ui;
+package model;
+
+import ui.*;
 
 import static ui.Constants.UI.Buttons.*;
 import static ui.Constants.UI.PauseButtons.*;
@@ -12,7 +14,7 @@ import java.awt.image.BufferedImage;
 /*
  * Represents the menu game state which starts the game
  */
-public class Menu extends State implements Statemethods {
+public class Menu extends State {
 
     private MenuButton[] buttons = new MenuButton[4];
     private BufferedImage backgroundImg;
@@ -98,6 +100,7 @@ public class Menu extends State implements Statemethods {
                 if (menuButton.isMousePressed()) {
                     if (menuButton.getButton() == ADD) {
                         game.addEnemies();
+                        EventLog.getInstance().logEvent(new Event("Added an enemy"));
                     } else if (menuButton.getButton() == LOAD) {
                         game.loadGame();
                     } else {

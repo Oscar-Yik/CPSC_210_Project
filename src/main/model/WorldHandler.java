@@ -1,4 +1,6 @@
-package ui;
+package model;
+
+import ui.LoadImages;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

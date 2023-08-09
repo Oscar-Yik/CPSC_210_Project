@@ -1,6 +1,5 @@
-package ui;
+package model;
 
-import model.Enemy;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
@@ -12,20 +11,21 @@ import java.awt.geom.Rectangle2D;
 import java.io.FileNotFoundException;
 
 import persistence.JsonWriter;
+import ui.*;
 
 /*
  * Represents the playing game state of the game
  */
-public class Playing extends State implements Statemethods, Writable {
+public class Playing extends State implements Writable {
 
     private static final String JSON_STORE = "./data/world.json";
-    private PlayerUI player;
+    private Player player;
     private WorldHandler worldHandler;
     private EnemyHandler enemyHandler;
     private boolean paused = false;
-    private PauseOverlay pauseOverlay;
-    private GameOverOverlay gameOverOverlay;
-    private GameWinOverlay gameWinOverlay;
+    private PauseScreen pauseScreen;
+    private GameOverScreen gameOverScreen;
+    private GameWinScreen gameWinScreen;
     private JsonWriter jsonWriter;
 
     private int lvlOffsetX = 0;
@@ -56,11 +56,11 @@ public class Playing extends State implements Statemethods, Writable {
      */
     private void initClasses() {
         worldHandler = new WorldHandler(game);
-        player = new PlayerUI(Game.GAME_WIDTH / 2,Game.GAME_HEIGHT / 2, this);
+        player = new Player(Game.GAME_WIDTH / 2,Game.GAME_HEIGHT / 2, this);
         enemyHandler = new EnemyHandler(this);
-        pauseOverlay = new PauseOverlay(this);
-        gameOverOverlay = new GameOverOverlay(this);
-        gameWinOverlay = new GameWinOverlay(this);
+        pauseScreen = new PauseScreen(this);
+        gameOverScreen = new GameOverScreen(this);
+        gameWinScreen = new GameWinScreen(this);
         jsonWriter = new JsonWriter(JSON_STORE);
     }
 
@@ -73,12 +73,11 @@ public class Playing extends State implements Statemethods, Writable {
         if (!paused && !gameOver && !gameWin) {
             worldHandler.update();
             player.update();
-            //System.out.println("Num Enemies: " + game.getNumEnemies());
             enemyHandler.update(player, lvlOffsetX, lvlOffsetY, game.getNumEnemies());
             checkCloseToBorderX();
             checkCloseToBorderY();
         } else {
-            pauseOverlay.update();
+            pauseScreen.update();
         }
     }
 
@@ -137,11 +136,11 @@ public class Playing extends State implements Statemethods, Writable {
         if (paused) {
             g.setColor(new Color(0,0,0,150));
             g.fillRect(0,0,Game.GAME_WIDTH,Game.GAME_HEIGHT);
-            pauseOverlay.draw(g);
+            pauseScreen.draw(g);
         } else if (gameOver) {
-            gameOverOverlay.draw(g);
+            gameOverScreen.draw(g);
         } else if (gameWin) {
-            gameWinOverlay.draw(g);
+            gameWinScreen.draw(g);
         }
     }
 
@@ -166,7 +165,7 @@ public class Playing extends State implements Statemethods, Writable {
     public void mousePressed(MouseEvent e) {
         if (!gameOver && !gameWin) {
             if (paused) {
-                pauseOverlay.mousePressed(e);
+                pauseScreen.mousePressed(e);
             }
         }
     }
@@ -179,7 +178,7 @@ public class Playing extends State implements Statemethods, Writable {
     public void mouseReleased(MouseEvent e) {
         if (!gameOver && !gameWin) {
             if (paused) {
-                pauseOverlay.mouseReleased(e);
+                pauseScreen.mouseReleased(e);
             }
         }
     }
@@ -192,7 +191,7 @@ public class Playing extends State implements Statemethods, Writable {
     public void mouseMoved(MouseEvent e) {
         if (!gameOver && !gameWin) {
             if (paused) {
-                pauseOverlay.mouseMoved(e);
+                pauseScreen.mouseMoved(e);
             }
         }
     }
@@ -204,27 +203,36 @@ public class Playing extends State implements Statemethods, Writable {
     @Override
     public void keyPressed(KeyEvent e) {
         if (gameOver) {
-            gameOverOverlay.keyPressed(e);
+            gameOverScreen.keyPressed(e);
         } else if (gameWin) {
-            gameWinOverlay.keyPressed(e);
+            gameWinScreen.keyPressed(e);
         } else {
-            switch (e.getKeyCode()) {
-                case KeyEvent.VK_W:
-                    player.setUp(true);
-                    break;
-                case KeyEvent.VK_S:
-                    player.setDown(true);
-                    break;
-                case KeyEvent.VK_A:
-                    player.setLeft(true);
-                    break;
-                case KeyEvent.VK_D:
-                    player.setRight(true);
-                    break;
-                case KeyEvent.VK_ESCAPE:
-                    paused = !paused;
-                    break;
-            }
+            checkDirectionKeys(e);
+        }
+    }
+
+    /*
+     * MODIFIES: this, player, gameoverOverlay
+     * EFFECTS: checks if direction key was pressed on the playing state
+     */
+    private void checkDirectionKeys(KeyEvent e) {
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_W:
+                player.setUp(true);
+                break;
+            case KeyEvent.VK_S:
+                player.setDown(true);
+                break;
+            case KeyEvent.VK_A:
+                player.setLeft(true);
+                break;
+            case KeyEvent.VK_D:
+                player.setRight(true);
+                break;
+            case KeyEvent.VK_ESCAPE:
+                paused = !paused;
+                EventLog.getInstance().logEvent(new Event("Game paused"));
+                break;
         }
     }
 
@@ -260,7 +268,7 @@ public class Playing extends State implements Statemethods, Writable {
         paused = false;
     }
 
-    public PlayerUI getPlayer() {
+    public Player getPlayer() {
         return this.player;
     }
 
@@ -292,7 +300,7 @@ public class Playing extends State implements Statemethods, Writable {
         this.gameWin = gameWin;
     }
 
-    public void setPlayer(PlayerUI player) {
+    public void setPlayer(Player player) {
         this.player = player;
     }
 
@@ -321,7 +329,7 @@ public class Playing extends State implements Statemethods, Writable {
             jsonWriter.open();
             jsonWriter.write(this);
             jsonWriter.close();
-            System.out.println("Saved to " + JSON_STORE);
+            EventLog.getInstance().logEvent(new Event("Game saved to " + JSON_STORE));
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
         }

@@ -1,19 +1,22 @@
 package ui;
 
+import model.Game;
+import model.Playing;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
 /*
  * Represents the overlay when the player beats all the enemies
  */
-public class GameWinOverlay {
+public class GameWinScreen {
 
     private Playing playing;
 
     /*
      * EFFECTS: constructs a game win overlay in the playing game state
      */
-    public GameWinOverlay(Playing playing) {
+    public GameWinScreen(Playing playing) {
         this.playing = playing;
     }
 
@@ -22,7 +25,7 @@ public class GameWinOverlay {
      */
     public void draw(Graphics g) {
         g.setColor(new Color(0,0,0,200));
-        g.fillRect(0,0,Game.GAME_WIDTH,Game.GAME_HEIGHT);
+        g.fillRect(0,0, Game.GAME_WIDTH,Game.GAME_HEIGHT);
 
         g.setColor(Color.white);
         g.drawString("Game Win", Game.GAME_WIDTH / 2, 150);

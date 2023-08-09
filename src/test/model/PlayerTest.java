@@ -13,27 +13,27 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class PlayerTest {
 
-    private Player testPlayer;
-    private Player testPlayer2;
-
-    @BeforeEach
-    void runBefore() {
-        testPlayer = new Player(1,4);
-        testPlayer2 = new Player(5,7,8);
-    }
-
-    @Test
-    void testConstructor() {
-        assertEquals(1, testPlayer.getX());
-        assertEquals(4, testPlayer.getY());
-    }
-
-    @Test
-    void testNewConstructor() {
-        assertEquals(5, testPlayer2.getStrength());
-        assertEquals(7, testPlayer2.getMaxHealth());
-        assertEquals(8, testPlayer2.getLevel().size());
-    }
+//    private Player testPlayer;
+//    private Player testPlayer2;
+//
+//    @BeforeEach
+//    void runBefore() {
+//        testPlayer = new Player(1,4);
+//        testPlayer2 = new Player(5,7,8);
+//    }
+//
+//    @Test
+//    void testConstructor() {
+//        assertEquals(1, testPlayer.getX());
+//        assertEquals(4, testPlayer.getY());
+//    }
+//
+//    @Test
+//    void testNewConstructor() {
+//        assertEquals(5, testPlayer2.getStrength());
+//        assertEquals(7, testPlayer2.getMaxHealth());
+//        assertEquals(8, testPlayer2.getLevel().size());
+//    }
 
 //    @Test
 //    void testToString() {

@@ -1,6 +1,6 @@
 package persistence;
 
-import ui.Playing;
+import model.Playing;
 import org.json.JSONObject;
 
 

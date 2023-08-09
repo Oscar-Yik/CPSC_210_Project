@@ -1,9 +1,10 @@
-package ui;
+package model;
 
 import model.Level;
 import persistence.Writable;
 
 import org.json.JSONObject;
+import ui.LoadImages;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
@@ -14,7 +15,7 @@ import java.util.List;
 /*
  * Represents the characters in the game such as players and enemies
  */
-public class Character implements Writable {
+public abstract class Character implements Writable {
 
     protected int strength = 10;
     protected List<Level> level;

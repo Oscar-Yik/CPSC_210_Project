@@ -1,6 +1,6 @@
-package ui;
+package model;
 
-import model.Player;
+import ui.LoadImages;
 
 import static ui.Constants.EnemyConstants.*;
 
@@ -72,12 +72,14 @@ public class EnemyHandler {
                 if (c.getCurrentHealth() <= 0) {
                     c.setAlive(false);
                     numAlive--;
+                    EventLog.getInstance().logEvent(new Event("Player defeated an enemy"));
                     player.levelUp();
                 }
             }
         }
         if (numAlive == 0) {
             playing.setGameWin(true);
+            EventLog.getInstance().logEvent(new Event("All enemies defeated, player wins!"));
         }
     }
 

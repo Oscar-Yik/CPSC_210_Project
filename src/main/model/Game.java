@@ -1,6 +1,9 @@
-package ui;
+package model;
 
 import persistence.JsonReader;
+import ui.GamePanel;
+import ui.GameWindow;
+import ui.Gamestate;
 
 import java.awt.*;
 import java.io.IOException;
@@ -40,7 +43,7 @@ public class Game implements Runnable {
      * EFFECTS: initializes all classes
      */
     private void initClasses() {
-        menu = new Menu(this);
+        menu = new model.Menu(this);
         playing = new Playing(this);
         jsonReader = new JsonReader(JSON_STORE);
     }
@@ -69,8 +72,15 @@ public class Game implements Runnable {
                 break;
             case QUIT:
             default:
+                printLog(EventLog.getInstance());
                 System.exit(0);
                 break;
+        }
+    }
+
+    private void printLog(EventLog el) {
+        for (Event next : el) {
+            System.out.println(next.toString());
         }
     }
 
@@ -188,7 +198,8 @@ public class Game implements Runnable {
     public void loadGame() {
         try {
             playing = jsonReader.read(this);
-            System.out.println("Loaded from " + JSON_STORE);
+            //System.out.println("Loaded from " + JSON_STORE);
+            EventLog.getInstance().logEvent(new Event("Game loaded from " + JSON_STORE));
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }

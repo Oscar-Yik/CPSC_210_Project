@@ -1,5 +1,8 @@
 package ui;
 
+import model.Game;
+import model.Playing;
+
 import static java.awt.Font.BOLD;
 import static ui.Constants.UI.PauseButtons.*;
 import static ui.Constants.UI.SaveLoadButtons.*;
@@ -8,7 +11,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-public class PauseOverlay {
+public class PauseScreen {
 
     private BufferedImage backgroundImg;
     private BufferedImage backgroundHeader;
@@ -21,7 +24,7 @@ public class PauseOverlay {
     private PauseButton save;
     private Playing playing;
 
-    public PauseOverlay(Playing playing) {
+    public PauseScreen(Playing playing) {
         loadBackground();
         createPauseButtons();
         this.playing = playing;

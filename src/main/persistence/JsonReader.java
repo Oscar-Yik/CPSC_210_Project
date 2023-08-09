@@ -6,12 +6,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
-import ui.Playing;
-import ui.Cavalier;
+import model.Playing;
+import model.Cavalier;
 import org.json.*;
-import ui.EnemyHandler;
-import ui.Game;
-import ui.PlayerUI;
+import model.EnemyHandler;
+import model.Game;
+import model.Player;
 
 // Represents a reader that reads a playing object from JSON data stored in file
 // Citation:
@@ -74,7 +74,7 @@ public class JsonReader {
     private void addPlayerValues(Playing playing, JSONObject jsonObject) {
         int x = jsonObject.getInt("x");
         int y = jsonObject.getInt("y");
-        PlayerUI player = new PlayerUI(x,y,playing);
+        Player player = new Player(x,y,playing);
 
         for (int i = 0; i < jsonObject.getInt("Level"); i++) {
             player.levelUpValueOnly();
@@ -93,7 +93,7 @@ public class JsonReader {
 
     // MODIFIES: player
     // EFFECTS: parses hitbox data from JSON object and adds them to player
-    private void addPlayerHitbox(PlayerUI player, JSONObject jsonObject) {
+    private void addPlayerHitbox(Player player, JSONObject jsonObject) {
         player.setHitboxX(jsonObject.getInt("hitboxX"));
         player.setHitboxY(jsonObject.getInt("hitboxY"));
         player.setHitboxWidth(jsonObject.getInt("hitboxW"));
@@ -102,7 +102,7 @@ public class JsonReader {
 
     // MODIFIES: player
     // EFFECTS: parses attackbox data from JSON object and adds them to player
-    private void addPlayerAttackbox(PlayerUI player, JSONObject jsonObject) {
+    private void addPlayerAttackbox(Player player, JSONObject jsonObject) {
         player.setAttackBoxX(jsonObject.getInt("attackboxX"));
         player.setAttackBoxY(jsonObject.getInt("attackboxY"));
         player.setAttackBoxWidth(jsonObject.getInt("attackboxW"));
@@ -111,7 +111,7 @@ public class JsonReader {
 
     // MODIFIES: player
     // EFFECTS: parses UI data from JSON object and adds them to player
-    private void addPlayerUI(PlayerUI player, JSONObject jsonObject) {
+    private void addPlayerUI(Player player, JSONObject jsonObject) {
         player.setAniIndex(jsonObject.getInt("aniIndex"));
         player.setAniTick(jsonObject.getInt("aniTick"));
         player.setLeft(jsonObject.getBoolean("left"));

@@ -1,19 +1,22 @@
 package ui;
 
+import model.Game;
+import model.Playing;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
 /*
  * Represents the game over overlay that appears when the player has no health left
  */
-public class GameOverOverlay {
+public class GameOverScreen {
 
     private Playing playing;
 
     /*
      * EFFECTS: constructs a game over overlay with a playing object
      */
-    public GameOverOverlay(Playing playing) {
+    public GameOverScreen(Playing playing) {
         this.playing = playing;
     }
 
@@ -22,7 +25,7 @@ public class GameOverOverlay {
      */
     public void draw(Graphics g) {
         g.setColor(new Color(0,0,0,200));
-        g.fillRect(0,0,Game.GAME_WIDTH,Game.GAME_HEIGHT);
+        g.fillRect(0,0, Game.GAME_WIDTH,Game.GAME_HEIGHT);
 
         g.setColor(Color.white);
         g.drawString("Game Over", Game.GAME_WIDTH / 2, 150);

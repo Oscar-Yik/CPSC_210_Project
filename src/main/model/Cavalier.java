@@ -1,8 +1,6 @@
-package ui;
+package model;
 
-import model.Player;
 import org.json.JSONObject;
-import ui.EnemyUI;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
@@ -12,7 +10,7 @@ import static ui.Constants.EnemyConstants.*;
 /*
  * Represents a Cavalier enemy that the player can defeat
  */
-public class Cavalier extends EnemyUI {
+public class Cavalier extends Enemy {
 
     private Rectangle2D.Float attackBox;
     private int attackBoxOffsetX;

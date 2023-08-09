@@ -1,16 +1,20 @@
 package ui;
 
+import model.Game;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyListener;
 
-import static ui.Game.GAME_WIDTH;
-import static ui.Game.GAME_HEIGHT;
+import static model.Game.GAME_WIDTH;
+import static model.Game.GAME_HEIGHT;
 
 /*
  * Represents the panel whee images are drawn
  */
 public class GamePanel extends JPanel {
     private MouseInputs mouseInputs;
+    private KeyListener keyInputs;
     private Game game;
 
     /*
@@ -18,10 +22,10 @@ public class GamePanel extends JPanel {
      */
     public GamePanel(Game game) {
         mouseInputs = new MouseInputs(this);
+        keyInputs = new KeyboardInputs(this);
         this.game = game;
         setPanelSize();
-        addKeyListener(new KeyboardInputs(this));
-        //System.out.println("Keyboard Connected");
+        addKeyListener(keyInputs);
         addMouseListener(mouseInputs);
         addMouseMotionListener(mouseInputs);
     }
