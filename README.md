@@ -29,7 +29,7 @@ on the title screen
 - Locate the *Main.java* file in src/main/ui/Main.java and run the *Main* function
 
 ## Title Screen
-![Title Screen](data/Title Screen.png)
+![Title_Screen](data/Title_Screen.png)
 - You can start the game by pressing **Start** 
   - **WARNING**: Sometimes the game doesn't respond to the keyboard inputs. 
   When this happens, quit the game fully and run *Main.java* again
